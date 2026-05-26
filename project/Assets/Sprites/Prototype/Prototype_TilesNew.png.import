@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpdlrs872ruwf"
-path="res://.godot/imported/Player20.png-a7ee1a709922f531f970da3a8064f476.ctex"
+uid="uid://doci7pfj076q4"
+path="res://.godot/imported/Prototype_TilesNew.png-684f138f7286ed095686ccc0c80f3008.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Player20.png"
-dest_files=["res://.godot/imported/Player20.png-a7ee1a709922f531f970da3a8064f476.ctex"]
+source_file="res://Assets/Sprites/Prototype/Prototype_TilesNew.png"
+dest_files=["res://.godot/imported/Prototype_TilesNew.png-684f138f7286ed095686ccc0c80f3008.ctex"]
 
 [params]
 
