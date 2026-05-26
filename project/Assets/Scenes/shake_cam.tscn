@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://8kyq2xehflmb"]
+
+[ext_resource type="Script" uid="uid://b7574rap0d3jy" path="res://Assets/Scripts/shake_cam.gd" id="1_2h6ud"]
+
+[node name="ShakeCam" type="Camera2D" unique_id=577677240 node_paths=PackedStringArray("follow_node")]
+script = ExtResource("1_2h6ud")
+max_offset = Vector2(100, 50)
+follow_node = NodePath("")

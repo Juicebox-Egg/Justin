@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://pe37oxgc1s1a" path="res://Assets/Scripts/player_controller.gd" id="1_7dd06"]
 [ext_resource type="Script" uid="uid://b2y3uu2nb014p" path="res://Assets/Scripts/player_animator.gd" id="2_7dd06"]
+[ext_resource type="PackedScene" uid="uid://8kyq2xehflmb" path="res://Assets/Scenes/shake_cam.tscn" id="2_t1xgp"]
 [ext_resource type="Texture2D" uid="uid://sp04fif3u4ko" path="res://Assets/Sprites/Player/tilemap.png" id="3_38rej"]
 
 [sub_resource type="Animation" id="Animation_7dd06"]
@@ -107,11 +108,12 @@ script = ExtResource("1_7dd06")
 speed = 7.0
 jump_power = 8.0
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=577741919]
-position = Vector2(0, -14)
+[node name="ShakeCam" parent="." unique_id=577677240 node_paths=PackedStringArray("follow_node") instance=ExtResource("2_t1xgp")]
+position = Vector2(0, -15)
 zoom = Vector2(5, 5)
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
+follow_node = NodePath("..")
 
 [node name="PlayerAnimator" type="Node2D" parent="." unique_id=232995091 node_paths=PackedStringArray("player_controller", "animation_player", "sprite")]
 position = Vector2(0, -5)
@@ -135,3 +137,12 @@ region_rect = Rect2(0, 0, 32, 32)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1953547093]
 position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_g5ct4")
+
+[node name="dash_timer" type="Timer" parent="." unique_id=239354363]
+wait_time = 0.5
+
+[node name="dash_again" type="Timer" parent="." unique_id=1984070354]
+wait_time = 0.5
+
+[connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="dash_again" to="." method="_on_dash_again_timeout"]
