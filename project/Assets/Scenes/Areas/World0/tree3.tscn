@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cnv7h81kdfmwi"]
+
+[ext_resource type="Texture2D" uid="uid://ds4rvvvq3bvdd" path="res://Assets/Sprites/World0/tree-3.png" id="1_j0u2x"]
+[ext_resource type="Script" uid="uid://cxjq3hqsbmsfe" path="res://Assets/Scripts/tree3.gd" id="2_4b555"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4b555"]
+
+[node name="Node2D" type="Node2D" unique_id=672965049]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1530726553]
+material = SubResource("ShaderMaterial_4b555")
+position = Vector2(4, 0)
+scale = Vector2(0.875, 1)
+texture = ExtResource("1_j0u2x")
+script = ExtResource("2_4b555")

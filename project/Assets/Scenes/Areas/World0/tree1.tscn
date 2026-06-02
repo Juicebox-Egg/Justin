@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://dddufinpjnf25"]
+
+[ext_resource type="Texture2D" uid="uid://d00nr0ndo0uss" path="res://Assets/Sprites/World0/tree-oak.png" id="1_depd3"]
+[ext_resource type="Script" uid="uid://bx8ex06mq18nh" path="res://Assets/Scripts/tree1.gd" id="2_pi8g3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3ti5"]
+size = Vector2(8.5, 169)
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_vmh47"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_3hsi0"]
+parameter_name = "Random_Strength"
+qualifier = 2
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_t2yun"]
+function = 0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_7oi7s"]
+expanded_output_ports = [0]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_nxy30"]
+output_port_for_preview = 0
+default_input_values = [1, 0.0, 2, 0.7, 3, 1.0, 4, 0.0]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_k2jbj"]
+default_input_values = [0, 0.0, 1, 6.055]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_54uj6"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_rdkrg"]
+default_input_values = [0, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_sdbfo"]
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_3nbnc"]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_c2o1x"]
+input_name = "time"
+
+[sub_resource type="VisualShader" id="VisualShader_40pt2"]
+mode = 1
+flags/light_only = false
+nodes/vertex/0/position = Vector2(1280, -40)
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_7oi7s")
+nodes/vertex/2/position = Vector2(-216.12921, 126.1092)
+nodes/vertex/3/node = SubResource("VisualShaderNodeRemap_nxy30")
+nodes/vertex/3/position = Vector2(160, 0)
+nodes/vertex/4/node = SubResource("VisualShaderNodeFloatOp_k2jbj")
+nodes/vertex/4/position = Vector2(400.15933, 183.0139)
+nodes/vertex/5/node = SubResource("VisualShaderNodeInput_54uj6")
+nodes/vertex/5/position = Vector2(200, -160)
+nodes/vertex/6/node = SubResource("VisualShaderNodeVectorDecompose_rdkrg")
+nodes/vertex/6/position = Vector2(520, -146.66667)
+nodes/vertex/7/node = SubResource("VisualShaderNodeFloatOp_sdbfo")
+nodes/vertex/7/position = Vector2(733.3333, -66.666664)
+nodes/vertex/8/node = SubResource("VisualShaderNodeVectorCompose_3nbnc")
+nodes/vertex/8/position = Vector2(1033.3585, -25.350336)
+nodes/vertex/9/node = SubResource("VisualShaderNodeInput_c2o1x")
+nodes/vertex/9/position = Vector2(2.5816448, 561.284)
+nodes/vertex/10/node = SubResource("VisualShaderNodeFloatOp_vmh47")
+nodes/vertex/10/position = Vector2(386.66666, 466.66666)
+nodes/vertex/11/node = SubResource("VisualShaderNodeFloatParameter_3hsi0")
+nodes/vertex/11/position = Vector2(0, 693.3333)
+nodes/vertex/12/node = SubResource("VisualShaderNodeFloatFunc_t2yun")
+nodes/vertex/12/position = Vector2(600, 466.66666)
+nodes/vertex/connections = PackedInt32Array(2, 2, 3, 0, 3, 0, 4, 0, 5, 0, 6, 0, 6, 0, 7, 0, 4, 0, 7, 1, 7, 0, 8, 0, 8, 0, 0, 0, 6, 1, 8, 1, 9, 0, 10, 0, 11, 0, 10, 1, 10, 0, 12, 0, 12, 0, 4, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k61tk"]
+shader = SubResource("VisualShader_40pt2")
+
+[node name="Tree" type="Node2D" unique_id=1706426442]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1905969901]
+collision_layer = 4095
+collision_mask = 4095
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=263561813]
+visible = false
+position = Vector2(7.25, -36.5)
+shape = SubResource("RectangleShape2D_s3ti5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=477158730]
+material = SubResource("ShaderMaterial_k61tk")
+position = Vector2(7, 0)
+scale = Vector2(0.78125, 1)
+texture = ExtResource("1_depd3")
+script = ExtResource("2_pi8g3")

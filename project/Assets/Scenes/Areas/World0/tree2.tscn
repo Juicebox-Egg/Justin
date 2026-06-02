@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://bno4mdnv4hfj"]
+
+[ext_resource type="Texture2D" uid="uid://dlkb7xpyo0h31" path="res://Assets/Sprites/World0/tree-pine.png" id="1_0xnhm"]
+[ext_resource type="Script" uid="uid://03ra6f34rtbe" path="res://Assets/Scripts/tree2.gd" id="2_s4hsl"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_31syu"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_0u8gl"]
+parameter_name = "RandomStrength"
+qualifier = 2
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_txy7k"]
+function = 0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_56y7p"]
+expanded_output_ports = [0]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_pt0ot"]
+output_port_for_preview = 0
+default_input_values = [1, 0.0, 2, 0.7, 3, 1.0, 4, 0.0]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_qyo7r"]
+default_input_values = [0, 0.0, 1, 10.0]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_04oiv"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_unxmo"]
+default_input_values = [0, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_hw4ta"]
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_rgf1f"]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_v0p0x"]
+input_name = "time"
+
+[sub_resource type="VisualShader" id="VisualShader_yim3i"]
+mode = 1
+flags/light_only = false
+nodes/vertex/0/position = Vector2(786.6667, 146.66667)
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_56y7p")
+nodes/vertex/2/position = Vector2(-453.33334, 173.33333)
+nodes/vertex/3/node = SubResource("VisualShaderNodeRemap_pt0ot")
+nodes/vertex/3/position = Vector2(-120, 93.333336)
+nodes/vertex/4/node = SubResource("VisualShaderNodeFloatOp_qyo7r")
+nodes/vertex/4/position = Vector2(93.333336, 146.66667)
+nodes/vertex/5/node = SubResource("VisualShaderNodeInput_04oiv")
+nodes/vertex/5/position = Vector2(-133.33333, -173.33333)
+nodes/vertex/6/node = SubResource("VisualShaderNodeVectorDecompose_unxmo")
+nodes/vertex/6/position = Vector2(133.33333, -186.66667)
+nodes/vertex/7/node = SubResource("VisualShaderNodeFloatOp_hw4ta")
+nodes/vertex/7/position = Vector2(360, -160)
+nodes/vertex/8/node = SubResource("VisualShaderNodeVectorCompose_rgf1f")
+nodes/vertex/8/position = Vector2(626.6667, -106.666664)
+nodes/vertex/9/node = SubResource("VisualShaderNodeInput_v0p0x")
+nodes/vertex/9/position = Vector2(-693.3333, 493.33334)
+nodes/vertex/10/node = SubResource("VisualShaderNodeFloatOp_31syu")
+nodes/vertex/10/position = Vector2(-413.33334, 480)
+nodes/vertex/11/node = SubResource("VisualShaderNodeFloatParameter_0u8gl")
+nodes/vertex/11/position = Vector2(-840, 626.6667)
+nodes/vertex/12/node = SubResource("VisualShaderNodeFloatFunc_txy7k")
+nodes/vertex/12/position = Vector2(-133.33333, 533.3333)
+nodes/vertex/connections = PackedInt32Array(2, 2, 3, 0, 3, 0, 4, 0, 5, 0, 6, 0, 6, 0, 7, 0, 4, 0, 7, 1, 7, 0, 8, 0, 6, 1, 8, 1, 8, 0, 0, 0, 9, 0, 10, 0, 11, 0, 10, 1, 10, 0, 12, 0, 12, 0, 4, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cxqe7"]
+shader = SubResource("VisualShader_yim3i")
+
+[node name="Node2D" type="Node2D" unique_id=1069807385]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=245874967]
+material = SubResource("ShaderMaterial_cxqe7")
+position = Vector2(3.5, 0)
+scale = Vector2(0.890625, 1)
+texture = ExtResource("1_0xnhm")
+script = ExtResource("2_s4hsl")
