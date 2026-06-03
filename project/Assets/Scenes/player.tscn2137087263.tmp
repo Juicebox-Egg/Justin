@@ -138,7 +138,7 @@ wait_time = 0.3
 wait_time = 0.35
 
 [node name="ShakeCam" parent="." unique_id=577677240 node_paths=PackedStringArray("follow_node") instance=ExtResource("2_t1xgp")]
-position = Vector2(0, -19)
+position = Vector2(0, -15)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
@@ -148,12 +148,6 @@ follow_node = NodePath("..")
 wait_time = 3.0
 one_shot = true
 
-[node name="GhostTimer" type="Timer" parent="." unique_id=346707887]
-wait_time = 0.15
-one_shot = true
-autostart = true
-
 [connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="dash_again" to="." method="_on_dash_again_timeout"]
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
-[connection signal="timeout" from="GhostTimer" to="." method="_on_ghost_timer_timeout"]

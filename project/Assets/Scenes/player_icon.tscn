@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bhbpka3675jty"]
+
+[ext_resource type="Texture2D" uid="uid://cc7a7lywn5ow0" path="res://Assets/Sprites/Player/circle.png" id="1_52jlt"]
+
+[node name="PlayerIcon" type="TextureRect" unique_id=1805810221]
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("1_52jlt")

@@ -16,9 +16,6 @@ func _ready() -> void:
 	randomize()
 
 func _process(delta: float) -> void:
-	if follow_node:
-		global_position = follow_node.global_position
-		
 	if trauma:
 		trauma = max(trauma - decay * delta, 0)
 		shake()

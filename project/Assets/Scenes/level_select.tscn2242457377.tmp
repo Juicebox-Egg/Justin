@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bp2iwqc4t7pgb"]
+
+[ext_resource type="PackedScene" uid="uid://dbu0dplb1y5t2" path="res://Assets/Scenes/level_icon.tscn" id="1_2nyfu"]
+[ext_resource type="Script" uid="uid://brtmlk1our1s5" path="res://Assets/Scripts/level_select.gd" id="1_tk2g5"]
+[ext_resource type="PackedScene" uid="uid://bhbpka3675jty" path="res://Assets/Scenes/player_icon.tscn" id="3_emms6"]
+
+[node name="LevelSelect" type="Control" unique_id=492000919]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tk2g5")
+
+[node name="LevelIcon" parent="." unique_id=1799159556 node_paths=PackedStringArray("next_level_right") instance=ExtResource("1_2nyfu")]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 51.0
+offset_right = 192.0
+offset_bottom = 113.0
+level_name = "0"
+next_level_right = NodePath("../LevelIcon2")
+
+[node name="LevelIcon2" parent="." unique_id=1826924208 node_paths=PackedStringArray("next_level_left", "next_level_right") instance=ExtResource("1_2nyfu")]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 160.0
+offset_right = 304.0
+offset_bottom = 222.0
+next_level_left = NodePath("../LevelIcon")
+next_level_right = NodePath("../LevelIcon3")
+
+[node name="LevelIcon3" parent="." unique_id=1422878540 node_paths=PackedStringArray("next_level_left", "next_level_right") instance=ExtResource("1_2nyfu")]
+layout_mode = 0
+offset_left = 358.0
+offset_top = 54.0
+offset_right = 422.0
+offset_bottom = 116.0
+level_name = "2"
+next_level_left = NodePath("../LevelIcon2")
+next_level_right = NodePath("../LevelIcon4")
+
+[node name="LevelIcon4" parent="." unique_id=857657662 node_paths=PackedStringArray("next_level_left") instance=ExtResource("1_2nyfu")]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 149.0
+offset_right = 530.0
+offset_bottom = 211.0
+level_name = "3"
+next_level_left = NodePath("../LevelIcon3")
+
+[node name="PlayerIcon" parent="." unique_id=1805810221 instance=ExtResource("3_emms6")]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0

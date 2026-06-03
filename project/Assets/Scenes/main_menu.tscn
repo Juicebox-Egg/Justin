@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://dnw3y7vk7mis6"]
+
+[ext_resource type="Script" uid="uid://dj3ceiuoxdgvl" path="res://Assets/Scripts/main_menu.gd" id="1_cbhea"]
+[ext_resource type="Texture2D" uid="uid://bpdlx0y6bacal" path="res://Assets/Sprites/World0/world0_background..png" id="1_fsbqx"]
+[ext_resource type="Texture2D" uid="uid://cn4c7wr0iq5op" path="res://Assets/Sprites/Player/Cool Text - No Name Yet 509417757262040.png" id="2_cbhea"]
+
+[node name="Node" type="Node" unique_id=2118289074]
+script = ExtResource("1_cbhea")
+
+[node name="background" type="TextureRect" parent="." unique_id=2090058034]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fsbqx")
+
+[node name="logo" type="TextureRect" parent="." unique_id=503550628]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -410.0
+offset_top = -133.0
+offset_right = 411.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_cbhea")
+
+[node name="world0" type="Button" parent="." unique_id=575973679]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -472.0
+offset_top = 71.0
+offset_right = -188.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "World 0"
+
+[node name="world1" type="Button" parent="." unique_id=1792444999]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -161.0
+offset_top = 68.0
+offset_right = 123.0
+offset_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "World 1"
+
+[connection signal="pressed" from="world0" to="." method="_on_world_0_pressed"]
+[connection signal="pressed" from="world1" to="." method="_on_world_1_pressed"]

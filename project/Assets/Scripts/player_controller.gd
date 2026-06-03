@@ -19,9 +19,12 @@ var can_dash = true
 var took_damage = false
 var can_move = true
 
+#coyote jump
+@onready var coyote_timer = $CoyoteTimer
+
 func _input(event):
 	# Handle jump.
-	if event.is_action_pressed("jump") and is_on_floor():
+	if event.is_action_pressed("jump") and (is_on_floor()) or !coyote_timer.is_stopped():
 		velocity.y = jump_power * jump_multiplier 
 	# Handle jump down platform
 	if event.is_action_pressed("move_down") and is_on_floor():
@@ -52,11 +55,12 @@ func respawn():
 	
 	took_damage = false
 
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if dashing:
-		print(velocity.y)
-	elif not is_on_floor():
+	#if dashing:
+		#print(velocity.y) was elif below
+	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 	#Collision Checking eg: if touching spike
@@ -81,7 +85,13 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed * speed_multiplier)
 
+	var was_on_floor = is_on_floor()
+
 	move_and_slide()
+	
+	if was_on_floor && !is_on_floor():
+		coyote_timer.start()
+	
 
 #stops dashing
 func _on_dash_timer_timeout() -> void:
