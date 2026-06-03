@@ -2,6 +2,21 @@
 
 [ext_resource type="PackedScene" uid="uid://dr8753iawnwcr" path="res://Assets/Scenes/player.tscn" id="1_7701g"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_woa84"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_woa84"]
+size = Vector2(548, 20)
+
 [node name="TestScene" type="Node2D" unique_id=220195678]
 
 [node name="CharacterBody2D" parent="." unique_id=1415082028 instance=ExtResource("1_7701g")]
+position = Vector2(-35, -5)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=805077709]
+collision_layer = 1023
+collision_mask = 1023
+physics_material_override = SubResource("PhysicsMaterial_woa84")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=408845390]
+position = Vector2(-37, 49)
+shape = SubResource("RectangleShape2D_woa84")

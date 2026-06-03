@@ -1256,5 +1256,13 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_2gs2l")
 text = "To Main Menu"
 
+[node name="Exit" type="Button" parent="CanvasLayer/Pause/PausePanel/VBoxContainer" unique_id=1558982733]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2gs2l")
+text = "Exit Game"
+
 [connection signal="pressed" from="CanvasLayer/Pause/PausePanel/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/PausePanel/VBoxContainer/Menu" to="CanvasLayer/Pause" method="_on_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/PausePanel/VBoxContainer/Exit" to="CanvasLayer/Pause" method="_on_exit_pressed"]

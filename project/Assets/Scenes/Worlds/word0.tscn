@@ -883,14 +883,14 @@ sources/3 = SubResource("TileSetAtlasSource_q7qaw")
 sources/4 = SubResource("TileSetAtlasSource_o1idn")
 sources/5 = SubResource("TileSetAtlasSource_acavf")
 
-[sub_resource type="Curve2D" id="Curve2D_w6400"]
+[sub_resource type="Curve2D" id="Curve2D_66eam"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -86)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_66eam"]
+[sub_resource type="Curve2D" id="Curve2D_pqga5"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 91, 0)
@@ -942,7 +942,7 @@ scale_max = 1.8
 color_ramp = SubResource("GradientTexture1D_bkabt")
 color_initial_ramp = SubResource("GradientTexture1D_wm7t4")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66eam"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5ag2"]
 bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -1104,7 +1104,7 @@ libraries/ = SubResource("AnimationLibrary_r1drb")
 autoplay = &"Burb"
 
 [node name="CharacterBody2D" parent="." unique_id=1415082028 instance=ExtResource("2_dxlk0")]
-position = Vector2(-258, -45)
+position = Vector2(-279, -47)
 speed = 6.0
 
 [node name="Detail" type="TileMap" parent="." unique_id=836493042]
@@ -1167,11 +1167,11 @@ texture = ExtResource("15_du7no")
 
 [node name="MovingPlatform" parent="." unique_id=1496652410 instance=ExtResource("4_56q3c")]
 position = Vector2(-179, -18)
-curve = SubResource("Curve2D_w6400")
+curve = SubResource("Curve2D_66eam")
 
 [node name="MovingPlatform2" parent="." unique_id=2002086583 instance=ExtResource("4_56q3c")]
 position = Vector2(-137, -109)
-curve = SubResource("Curve2D_66eam")
+curve = SubResource("Curve2D_pqga5")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=903012382]
 position = Vector2(-16, -100)
@@ -1186,10 +1186,10 @@ trail_lifetime = 0.6
 process_material = SubResource("ParticleProcessMaterial_pmx3x")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=2083094230]
-offset_left = -356.0
-offset_top = -75.0
-offset_right = -288.0
-offset_bottom = -20.0
+offset_left = -359.0
+offset_top = -93.0
+offset_right = -291.0
+offset_bottom = -38.0
 theme_override_fonts/bold_font = ExtResource("19_du7no")
 theme_override_font_sizes/normal_font_size = 5
 theme_override_font_sizes/bold_font_size = 7
@@ -1199,12 +1199,12 @@ Hey!
 You can press SHIFT to dash!"
 metadata/_edit_use_anchors_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1403763486]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=270265697]
 
-[node name="Pause" type="Node" parent="CanvasLayer" unique_id=715359677]
+[node name="Pause" type="Node" parent="CanvasLayer" unique_id=1938443393]
 script = ExtResource("20_66eam")
 
-[node name="PausePanel" type="Panel" parent="CanvasLayer/Pause" unique_id=1866417522]
+[node name="PausePanel" type="Panel" parent="CanvasLayer/Pause" unique_id=1305082240]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 8
@@ -1215,7 +1215,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Pause/PausePanel" unique_id=1258006047]
+[node name="Label" type="Label" parent="CanvasLayer/Pause/PausePanel" unique_id=510229343]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1229,7 +1229,7 @@ theme_override_font_sizes/font_size = 50
 text = "GAME PAUSED"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Pause/PausePanel" unique_id=1331705078]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Pause/PausePanel" unique_id=1218746696]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1244,19 +1244,27 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 50
 
-[node name="Resume" type="Button" parent="CanvasLayer/Pause/PausePanel/VBoxContainer" unique_id=797640251]
+[node name="Resume" type="Button" parent="CanvasLayer/Pause/PausePanel/VBoxContainer" unique_id=1717348071]
 process_mode = 3
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_66eam")
+theme_override_styles/normal = SubResource("StyleBoxFlat_o5ag2")
 text = "Resume"
 
-[node name="Menu" type="Button" parent="CanvasLayer/Pause/PausePanel/VBoxContainer" unique_id=2036819472]
+[node name="Menu" type="Button" parent="CanvasLayer/Pause/PausePanel/VBoxContainer" unique_id=874588929]
 process_mode = 3
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_66eam")
+theme_override_styles/normal = SubResource("StyleBoxFlat_o5ag2")
 text = "To Main Menu"
+
+[node name="Exit" type="Button" parent="CanvasLayer/Pause/PausePanel/VBoxContainer" unique_id=235014520]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_o5ag2")
+text = "Exit Game"
 
 [connection signal="pressed" from="CanvasLayer/Pause/PausePanel/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/PausePanel/VBoxContainer/Menu" to="CanvasLayer/Pause" method="_on_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/PausePanel/VBoxContainer/Exit" to="CanvasLayer/Pause" method="_on_exit_pressed"]
