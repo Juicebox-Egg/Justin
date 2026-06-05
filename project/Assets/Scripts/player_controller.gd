@@ -22,7 +22,7 @@ var can_move = true
 #coyote jump
 var coyote_jump: bool = false
 var jumping: bool = false
-var coyote_frames: int = 4
+var coyote_frames: int = 5
 var was_on_floor: bool = false
 @onready var coyote_timer = $CoyoteTimer
 
