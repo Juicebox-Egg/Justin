@@ -14,6 +14,10 @@ config/name="Project"
 run/main_scene="uid://dnw3y7vk7mis6"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[autoload]
+
+GlobalScript="*uid://i00fm5oyfyil"
+
 [display]
 
 window/size/mode=2
@@ -73,3 +77,4 @@ pause={
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 viewport/hdr_2d=true
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

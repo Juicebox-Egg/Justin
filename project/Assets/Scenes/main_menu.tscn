@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://dnw3y7vk7mis6"]
 
 [ext_resource type="Script" uid="uid://dj3ceiuoxdgvl" path="res://Assets/Scripts/main_menu.gd" id="1_cbhea"]
-[ext_resource type="Texture2D" uid="uid://bpdlx0y6bacal" path="res://Assets/Sprites/World0/world0_background..png" id="1_fsbqx"]
-[ext_resource type="Texture2D" uid="uid://cn4c7wr0iq5op" path="res://Assets/Sprites/Player/Cool Text - No Name Yet 509417757262040.png" id="2_cbhea"]
+[ext_resource type="Texture2D" uid="uid://dthhednog4m3p" path="res://Assets/Sprites/MainMainBackground.png" id="2_fsbqx"]
 
 [node name="Node" type="Node" unique_id=2118289074]
 script = ExtResource("1_cbhea")
@@ -14,22 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_fsbqx")
-
-[node name="logo" type="TextureRect" parent="." unique_id=503550628]
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -410.0
-offset_top = -133.0
-offset_right = 411.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_cbhea")
+texture = ExtResource("2_fsbqx")
 
 [node name="world0" type="Button" parent="." unique_id=575973679]
 anchors_preset = 8
@@ -37,10 +21,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -535.0
-offset_top = 67.0
-offset_right = -278.0
-offset_bottom = 164.0
+offset_left = -338.0
+offset_top = 133.0
+offset_right = -210.0
+offset_bottom = 197.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
@@ -52,10 +36,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -251.0
-offset_top = 69.0
-offset_right = -12.0
-offset_bottom = 163.0
+offset_left = -47.0
+offset_top = 16.0
+offset_right = 192.0
+offset_bottom = 110.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
@@ -67,10 +51,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -162.0
-offset_top = 197.0
-offset_right = 122.0
-offset_bottom = 308.0
+offset_left = -136.0
+offset_top = 201.0
+offset_right = 148.0
+offset_bottom = 312.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://yh7mesetrp2p"]
+
+[ext_resource type="Texture2D" uid="uid://bgtxduy3vy8qe" path="res://Assets/Sprites/World1/Checkpoint-sheet-Sheet.png" id="1_w57ur"]
+[ext_resource type="Script" uid="uid://dahvaeayuq6vp" path="res://Assets/Scripts/checkpoint.gd" id="2_sn3qb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ut6bo"]
+size = Vector2(18, 31)
+
+[sub_resource type="Gradient" id="Gradient_w57ur"]
+offsets = PackedFloat32Array(0, 0.9203187)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sn3qb"]
+gradient = SubResource("Gradient_w57ur")
+fill = 1
+fill_from = Vector2(0.53418803, 0.47008547)
+fill_to = Vector2(0.9145299, 0.86752135)
+
+[node name="checkpoint" type="Sprite2D" unique_id=488538849]
+texture_filter = 1
+position = Vector2(0, -11.500001)
+scale = Vector2(0.6875, 0.71875006)
+texture = ExtResource("1_w57ur")
+hframes = 2
+script = ExtResource("2_sn3qb")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1709447056]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1006256170]
+visible = false
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ut6bo")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1461309795]
+position = Vector2(0, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1008652601]
+position = Vector2(0, -6.2608676)
+color = Color(0.80292684, 0.2790739, 0.0892378, 1)
+energy = 2.0
+texture = SubResource("GradientTexture2D_sn3qb")
+texture_scale = 1.5
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

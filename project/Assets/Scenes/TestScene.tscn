@@ -7,6 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_woa84"]
 size = Vector2(548, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amhp1"]
+size = Vector2(20, 278)
+
 [node name="TestScene" type="Node2D" unique_id=220195678]
 
 [node name="CharacterBody2D" parent="." unique_id=1415082028 instance=ExtResource("1_7701g")]
@@ -20,3 +23,11 @@ physics_material_override = SubResource("PhysicsMaterial_woa84")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=408845390]
 position = Vector2(-37, 49)
 shape = SubResource("RectangleShape2D_woa84")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1313942874]
+collision_layer = 769
+collision_mask = 769
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=527037789]
+position = Vector2(-236, -83)
+shape = SubResource("RectangleShape2D_amhp1")
