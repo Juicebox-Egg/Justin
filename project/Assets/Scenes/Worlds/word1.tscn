@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dcpmxm2k72lco" path="res://Assets/Sprites/World1/world_1_background.png" id="1_ypuo5"]
 [ext_resource type="Texture2D" uid="uid://ci43d1pf0gntk" path="res://Assets/Sprites/World1/world_1.png" id="4_hyohv"]
 [ext_resource type="Texture2D" uid="uid://bnmed7yswtcv7" path="res://Assets/Sprites/World1/world_1spikes.png" id="5_cmfdu"]
+[ext_resource type="Texture2D" uid="uid://dogtvln14dly6" path="res://Assets/Sprites/Pause.png" id="6_hon1d"]
 [ext_resource type="Texture2D" uid="uid://bo2pspm867clr" path="res://Assets/Sprites/World1/colors.png" id="6_vebag"]
 [ext_resource type="Texture2D" uid="uid://cfbyjyw3fn0gm" path="res://Assets/Sprites/World1/Checkpoint-Sheet.png" id="7_ypuo5"]
 [ext_resource type="PackedScene" uid="uid://yh7mesetrp2p" path="res://Assets/Scenes/checkpoint.tscn" id="8_qamjf"]
@@ -1106,6 +1107,9 @@ position = Vector2(-173, -62.000008)
 scale = Vector2(0.6701389, 0.55632716)
 texture = ExtResource("1_ypuo5")
 
+[node name="checkpoint" parent="." unique_id=488538849 instance=ExtResource("8_qamjf")]
+position = Vector2(-336, -3)
+
 [node name="Detail_Behind" type="TileMap" parent="." unique_id=347246897]
 tile_set = SubResource("TileSet_vebag")
 format = 2
@@ -1130,19 +1134,13 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Pause_Menu/Pause/PausePanel" unique_id=759604295]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -174.0
-offset_top = -89.0
-offset_right = 175.0
-offset_bottom = -20.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 50
-text = "GAME PAUSED"
-horizontal_alignment = 1
+[node name="TextureRect" type="TextureRect" parent="Pause_Menu/Pause/PausePanel" unique_id=281166276]
+layout_mode = 0
+offset_left = -576.0
+offset_top = -327.0
+offset_right = 580.0
+offset_bottom = 321.0
+texture = ExtResource("6_hon1d")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pause_Menu/Pause/PausePanel" unique_id=1848287981]
 layout_mode = 1
@@ -1238,9 +1236,6 @@ texture = SubResource("GradientTexture2D_qamjf")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Checkpoint" unique_id=1152965412]
 libraries/ = SubResource("AnimationLibrary_3my4v")
 autoplay = &"Checkpoint"
-
-[node name="checkpoint" parent="." unique_id=488538849 instance=ExtResource("8_qamjf")]
-position = Vector2(-322, -3.500001)
 
 [connection signal="pressed" from="Pause_Menu/Pause/PausePanel/VBoxContainer/Resume" to="Pause_Menu/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause_Menu/Pause/PausePanel/VBoxContainer/Menu" to="Pause_Menu/Pause" method="_on_menu_pressed"]

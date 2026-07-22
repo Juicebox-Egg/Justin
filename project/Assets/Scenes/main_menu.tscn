@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dnw3y7vk7mis6"]
 
 [ext_resource type="Script" uid="uid://dj3ceiuoxdgvl" path="res://Assets/Scripts/main_menu.gd" id="1_cbhea"]
-[ext_resource type="Texture2D" uid="uid://dthhednog4m3p" path="res://Assets/Sprites/MainMainBackground.png" id="2_fsbqx"]
+[ext_resource type="Texture2D" uid="uid://bf33n52tuirsc" path="res://Assets/Sprites/MainMainBackground1.png" id="2_fsbqx"]
 
 [node name="Node" type="Node" unique_id=2118289074]
 script = ExtResource("1_cbhea")
@@ -11,6 +11,8 @@ texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_fsbqx")
@@ -21,10 +23,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -338.0
-offset_top = 133.0
-offset_right = -210.0
-offset_bottom = 197.0
+offset_left = -334.0
+offset_top = 97.0
+offset_right = -206.0
+offset_bottom = 161.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
@@ -36,10 +38,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -47.0
-offset_top = 16.0
-offset_right = 192.0
-offset_bottom = 110.0
+offset_left = -126.0
+offset_top = 8.0
+offset_right = 2.0
+offset_bottom = 72.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
@@ -51,22 +53,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -136.0
-offset_top = 201.0
-offset_right = 148.0
-offset_bottom = 312.0
+offset_left = -54.0
+offset_top = 254.0
+offset_right = 74.0
+offset_bottom = 320.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
-text = "Exit Game"
-
-[node name="Label" type="Label" parent="." unique_id=127457779]
-offset_left = 75.0
-offset_top = 353.0
-offset_right = 254.0
-offset_bottom = 395.0
-theme_override_font_sizes/font_size = 30
-text = "( TUTORIAL )"
+text = "Exit"
 
 [connection signal="pressed" from="world0" to="." method="_on_world_0_pressed"]
 [connection signal="pressed" from="world1" to="." method="_on_world_1_pressed"]
