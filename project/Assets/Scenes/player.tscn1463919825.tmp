@@ -20,11 +20,6 @@ tracks/0/keys = {
 "values": [Rect2(0, 0, 32, 32)]
 }
 
-[sub_resource type="Animation" id="Animation_c3tg1"]
-resource_name = "dash_anim"
-length = 0.3
-loop_mode = 1
-
 [sub_resource type="Animation" id="Animation_w3t24"]
 resource_name = "fall"
 length = 0.5
@@ -96,7 +91,6 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t1xgp"]
 _data = {
 &"RESET": SubResource("Animation_7dd06"),
-&"dash_anim": SubResource("Animation_c3tg1"),
 &"fall": SubResource("Animation_w3t24"),
 &"idle": SubResource("Animation_38rej"),
 &"jump_anim": SubResource("Animation_t1xgp"),
@@ -123,13 +117,12 @@ script = ExtResource("1_7dd06")
 speed = 7.0
 jump_power = 8.0
 
-[node name="PlayerAnimator" type="Node2D" parent="." unique_id=232995091 node_paths=PackedStringArray("player_controller", "animation_player", "sprite", "raycast")]
+[node name="PlayerAnimator" type="Node2D" parent="." unique_id=232995091 node_paths=PackedStringArray("player_controller", "animation_player", "sprite")]
 position = Vector2(0, -5)
 script = ExtResource("2_7dd06")
 player_controller = NodePath("..")
 animation_player = NodePath("AnimationPlayer")
 sprite = NodePath("Sprite2D")
-raycast = NodePath("../Node2D/RayCast2D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerAnimator" unique_id=424368907]
 root_node = NodePath("../..")
@@ -170,16 +163,13 @@ one_shot = true
 autostart = true
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=747438054]
-visible = false
 position = Vector2(0, -10)
 energy = 0.5
 texture = SubResource("GradientTexture2D_23lac")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1033452572]
-visible = false
 
 [node name="RayCast2D" type="RayCast2D" parent="Node2D" unique_id=1756073897]
-visible = false
 position = Vector2(5, -10)
 target_position = Vector2(2, 0)
 collision_mask = 8

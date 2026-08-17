@@ -77,8 +77,8 @@ shader = SubResource("VisualShader_40pt2")
 [node name="Tree" type="Node2D" unique_id=1706426442]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1905969901]
-collision_layer = 4095
-collision_mask = 4095
+collision_layer = 4087
+collision_mask = 4087
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=263561813]
 visible = false

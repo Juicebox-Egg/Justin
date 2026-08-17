@@ -11,6 +11,7 @@ var direction = 0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+
 # simple dash
 const DASH_SPEED = 40.0
 var dashing = false
@@ -27,10 +28,16 @@ var coyote_frames: int = 5
 var was_on_floor: bool = false
 @onready var coyote_timer = $CoyoteTimer
 
-#wall jump
+# wall jump raycast
+@onready var raycast = $Node2D/RayCast2D
+
+# wall jump & wall slide
 const wall_jump_pushback = 100
 
-#checkpoint
+const wall_slide_gravity = 100
+var is_wall_sliding = false
+
+# checkpoint
 @export var player_checkpont_pos: Vector2 = Vector2(-999, -999)
 
 # coyote framerate
@@ -78,12 +85,16 @@ func respawn(respawn_pos:Vector2):
 
 func _physics_process(delta: float) -> void:
 # Add the gravity.
-	if dashing:
-		velocity.y = 0.0
-		#print(velocity.y) was elif below
-	elif not is_on_floor():
-		velocity += get_gravity() * delta
-	
+	if not is_on_floor():
+		if dashing:
+			velocity.y = 0.0
+			#print(velocity.y) was elif below
+		elif raycast.is_colliding() and velocity.y > 0:
+			velocity += get_gravity() * delta / 4
+		else:
+			velocity += get_gravity() * delta
+	jump()
+	wall_slide(delta)
 
 # Spikes
 	for i in get_slide_collision_count():
@@ -117,17 +128,27 @@ func _physics_process(delta: float) -> void:
 		coyote_timer.start()
 	was_on_floor = is_on_floor()
 
-# wall_jump?
+# wall_jump
 func jump():
 	if Input.is_action_just_pressed("jump"):
+		print(raycast.is_colliding())
 		if is_on_floor():
 			velocity.y = jump_power * jump_multiplier
-		if is_on_wall() and Input.is_action_just_pressed("move_right"):
+		if raycast.is_colliding() and Input.is_action_pressed("move_right"):
 			velocity.y = jump_power * jump_multiplier
 			velocity.x = -wall_jump_pushback
-		if is_on_wall() and Input.is_action_just_pressed("move_left"):
+		if raycast.is_colliding() and Input.is_action_pressed("move_left"):
 			velocity.y = jump_power * jump_multiplier
 			velocity.x = wall_jump_pushback
+# wall_slide
+func wall_slide(delta):
+	if raycast.is_colliding() and !is_on_floor():
+		if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right"):
+			is_wall_sliding = true
+		else:
+			is_wall_sliding = false
+	else:
+		is_wall_sliding = false	
 
 # stops dashing
 func _on_dash_timer_timeout() -> void:
