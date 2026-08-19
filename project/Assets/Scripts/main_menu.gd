@@ -6,10 +6,10 @@ func _load_level() -> void:
 	get_tree().change_scene_to_file("res://Assets/Scenes/main_menu.tscn")
 
 func _on_world_0_pressed() -> void:
-	get_tree().change_scene_to_file("res://Assets/Scenes/Worlds/word0.tscn")
+	get_tree().change_scene_to_file("res://Assets/Scenes/Worlds/world0.tscn")
 
 func _on_world_1_pressed() -> void:
-	get_tree().change_scene_to_file("res://Assets/Scenes/Worlds/word1.tscn")
+	get_tree().change_scene_to_file("res://Assets/Scenes/Worlds/world1.tscn")
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()

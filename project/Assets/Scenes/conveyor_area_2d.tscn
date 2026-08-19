@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://brgmlcjjud08m"]
+
+[ext_resource type="Script" uid="uid://brifpqska6xyc" path="res://Assets/Scripts/conveyor_area_2d.gd" id="1_yoeu3"]
+
+[node name="ConveyorArea2D" type="Area2D" unique_id=3646229]
+script = ExtResource("1_yoeu3")

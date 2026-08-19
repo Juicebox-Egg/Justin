@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://dc324n0gmmxl7"]
+
+[ext_resource type="Script" uid="uid://dos7njiyqvwv" path="res://Assets/Scripts/jump_pad.gd" id="1_4a6ch"]
+[ext_resource type="Texture2D" uid="uid://dtttkf8aq567t" path="res://Assets/Sprites/jump-pad-Sheet.png" id="1_k1q7x"]
+
+[sub_resource type="Animation" id="Animation_4a6ch"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_auxbw"]
+resource_name = "activate"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32), Rect2(32, 0, 32, 32), Rect2(64, 0, 32, 32), Rect2(96, 0, 32, 32), Rect2(128, 0, 32, 32), Rect2(160, 0, 32, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pn0rw"]
+_data = {
+&"RESET": SubResource("Animation_4a6ch"),
+&"activate": SubResource("Animation_auxbw")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1q7x"]
+size = Vector2(26, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_auxbw"]
+size = Vector2(26, 5)
+
+[node name="jump_pad" type="Node2D" unique_id=730468109]
+script = ExtResource("1_4a6ch")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1177147086]
+texture_filter = 1
+position = Vector2(0, 4)
+texture = ExtResource("1_k1q7x")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=1438817056]
+libraries/ = SubResource("AnimationLibrary_pn0rw")
+autoplay = &"activate"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1996097903]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=640148009]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_k1q7x")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1318159739]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1243439150]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_auxbw")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

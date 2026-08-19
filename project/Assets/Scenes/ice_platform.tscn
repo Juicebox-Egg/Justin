@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://d3bce6doskvid"]
+
+[ext_resource type="Texture2D" uid="uid://bftsjaq5d3eqf" path="res://Assets/Sprites/Platform-Ice.png" id="1_o0g0u"]
+
+[sub_resource type="GDScript" id="GDScript_o0g0u"]
+script/source = "extends Sprite2D
+
+@export var friction = 2.0
+
+func _on_body_entered(body):
+	if body is PlayerController:
+		body.on_ice = true
+		body.ice_friction = friction
+
+func _on_body_exited(body):
+	if body is PlayerController:
+		body.on_ice = false
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcxo3"]
+size = Vector2(40, 8)
+
+[sub_resource type="GDScript" id="GDScript_1hona"]
+script/source = "extends Area2D
+
+func _on_body_entered(body):
+	if body is PlayerController:
+		body.on_ice = true
+
+func _on_body_exited(body):
+	if body is PlayerController:
+		body.on_ice = false
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hona"]
+size = Vector2(40, 8)
+
+[node name="IcePlatform" type="Sprite2D" unique_id=1333036990 groups=["ice_platform"]]
+texture = ExtResource("1_o0g0u")
+script = SubResource("GDScript_o0g0u")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=873693499]
+collision_layer = 769
+collision_mask = 769
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=361316283]
+shape = SubResource("RectangleShape2D_xcxo3")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=995896158]
+collision_layer = 769
+collision_mask = 769
+script = SubResource("GDScript_1hona")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=120394766]
+shape = SubResource("RectangleShape2D_1hona")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -3,6 +3,7 @@ class_name PlayerController
 
 @export var speed = 10.0
 @export var jump_power = 10.0
+@export var player_animator : Node
 
 var speed_multiplier = 20.0
 var jump_multiplier = -30.0
@@ -10,7 +11,6 @@ var direction = 0
 
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 
 # simple dash
 const DASH_SPEED = 40.0
@@ -20,6 +20,12 @@ var can_dash = true
 # spikes
 var took_damage = false
 var can_move = true
+var is_respawning = false
+var is_dying = false
+
+# jump pad
+const jump_height: float = -165.0
+const jump_pad_height: float = -430.0
 
 # coyote jump
 var coyote_jump: bool = false
@@ -33,9 +39,11 @@ var was_on_floor: bool = false
 
 # wall jump & wall slide
 const wall_jump_pushback = 100
-
 const wall_slide_gravity = 100
 var is_wall_sliding = false
+
+# conveyor platform
+var conveyor_velocity: float = 0.0
 
 # checkpoint
 @export var player_checkpont_pos: Vector2 = Vector2(-999, -999)
@@ -70,21 +78,29 @@ func _input(event):
 		
 
 # respawn
-func respawn(respawn_pos:Vector2):
+func respawn(respawn_pos: Vector2):
 	self.visible = false
-	can_move = false
-	await get_tree().create_timer(0.5).timeout
 	
-	self.global_position = Vector2(respawn_pos)
+	self.global_position = respawn_pos
+	velocity = Vector2.ZERO
+	
 	self.visible = true
 	can_move = true
-	await get_tree().create_timer(0.5).timeout
+	
+	player_animator.reset_after_death()
+	
+	await get_tree().create_timer(0.1).timeout
 	
 	took_damage = false
+	is_respawning = false
 
 
 func _physics_process(delta: float) -> void:
 # Add the gravity.
+	if not can_move:
+		velocity = Vector2.ZERO
+		return
+		
 	if not is_on_floor():
 		if dashing:
 			velocity.y = 0.0
@@ -98,11 +114,20 @@ func _physics_process(delta: float) -> void:
 
 # Spikes
 	for i in get_slide_collision_count():
-		var _collision = get_slide_collision(i)
+		var collision = get_slide_collision(i)
 		
-		if _collision.get_collider().name == "Spikes": 
-			if took_damage == false:
+		if collision.get_collider().name == "Spikes":
+			if not took_damage and not is_respawning:
 				took_damage = true
+				is_respawning = true
+				can_move = false
+				
+				velocity = Vector2.ZERO
+				
+				player_animator.play_death()
+				
+				await get_tree().create_timer(0.3).timeout
+				
 				respawn(player_checkpont_pos)
 
 # Basic Movement
@@ -117,9 +142,19 @@ func _physics_process(delta: float) -> void:
 				velocity.x = direction * speed * speed_multiplier
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed * speed_multiplier)
-	
+			
+	#conveyor platform
+	velocity.x += conveyor_velocity
 	move_and_slide()
 	
+# falling platform
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if collider.has_method("collide_with"):
+			collider.collide_with()
+
 # coyote jump
 	if is_on_floor() and jumping:
 		jumping = false

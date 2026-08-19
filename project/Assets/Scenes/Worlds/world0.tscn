@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://ec0p40lae8p8"]
 
+[ext_resource type="Texture2D" uid="uid://cy50axv8adrra" path="res://Assets/Sprites/World0/world_0_background_backtrees.png" id="1_0s1vm"]
 [ext_resource type="Texture2D" uid="uid://2jv6sxk6wxmu" path="res://Assets/Sprites/World0/World_0.png" id="1_600ry"]
 [ext_resource type="Texture2D" uid="uid://doci7pfj076q4" path="res://Assets/Sprites/Prototype/Prototype_TilesNew.png" id="1_di6yo"]
 [ext_resource type="Texture2D" uid="uid://bpdlx0y6bacal" path="res://Assets/Sprites/World0/world0_background..png" id="1_o1idn"]
@@ -25,6 +26,8 @@
 [ext_resource type="Script" uid="uid://b50342hduh5mv" path="res://Assets/Scripts/pause.gd" id="20_66eam"]
 [ext_resource type="Texture2D" uid="uid://dogtvln14dly6" path="res://Assets/Sprites/Pause.png" id="24_bypsa"]
 [ext_resource type="PackedScene" uid="uid://dg5nd8fq1miwn" path="res://Assets/Scenes/teleport.tscn" id="25_agm8f"]
+[ext_resource type="PackedScene" uid="uid://bqlljaxabbujl" path="res://Assets/Scenes/falling_platform.tscn" id="27_v84nd"]
+[ext_resource type="PackedScene" uid="uid://bq7jsmxpqlei7" path="res://Assets/Scenes/conveyer_platform.tscn" id="28_pr2yf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rmegx"]
 texture = ExtResource("6_waeb4")
@@ -1039,12 +1042,29 @@ expand_margin_bottom = 8.0
 [node name="Node2D" type="Node2D" unique_id=784559387]
 position = Vector2(348, 287.5)
 
-[node name="World0Background_" type="Sprite2D" parent="." unique_id=824971911]
-position = Vector2(-242, -137)
-texture = ExtResource("1_o1idn")
+[node name="Node2D" type="Node2D" parent="." unique_id=1546681221]
 
-[node name="World0Background_2" type="Sprite2D" parent="." unique_id=1658544203]
-position = Vector2(458, -137)
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Node2D" unique_id=385433843]
+
+[node name="Parallax2D2" type="Parallax2D" parent="Node2D/ParallaxBackground" unique_id=171237697]
+texture_filter = 1
+scroll_scale = Vector2(0.3, 0.3)
+scroll_offset = Vector2(100, 0)
+repeat_size = Vector2(700, 300)
+repeat_times = 2
+
+[node name="Back_Background" type="Sprite2D" parent="Node2D/ParallaxBackground/Parallax2D2" unique_id=1413965675]
+position = Vector2(950, 150)
+texture = ExtResource("1_0s1vm")
+
+[node name="Parallax2D" type="Parallax2D" parent="Node2D/ParallaxBackground" unique_id=1325410157]
+texture_filter = 1
+scroll_scale = Vector2(0.2, 0.2)
+scroll_offset = Vector2(100, 0)
+repeat_size = Vector2(700, 300)
+
+[node name="Front_Background" type="Sprite2D" parent="Node2D/ParallaxBackground/Parallax2D" unique_id=824971911]
+position = Vector2(609, -137.5)
 texture = ExtResource("1_o1idn")
 
 [node name="checkpoint" parent="." unique_id=152195300 instance=ExtResource("15_ql3de")]
@@ -1393,6 +1413,16 @@ text = "Exit Game"
 [node name="tp" parent="." unique_id=1549017035 instance=ExtResource("25_agm8f")]
 visible = false
 position = Vector2(593, -63.5)
+
+[node name="falling_platform" parent="." unique_id=1437360516 instance=ExtResource("27_v84nd")]
+position = Vector2(203, -12.5)
+
+[node name="Sprite2D2" parent="." unique_id=77579572 instance=ExtResource("28_pr2yf")]
+position = Vector2(152, -12.5)
+
+[node name="Sprite2D3" parent="." unique_id=1420116767 instance=ExtResource("28_pr2yf")]
+position = Vector2(131.99998, -121.5)
+scale = Vector2(6.4166684, 1)
 
 [connection signal="pressed" from="Pause Menu/Pause/PausePanel/VBoxContainer/Resume" to="Pause Menu/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause Menu/Pause/PausePanel/VBoxContainer/Menu" to="Pause Menu/Pause" method="_on_menu_pressed"]
