@@ -1414,7 +1414,7 @@ text = "Exit Game"
 visible = false
 position = Vector2(593, -63.5)
 
-[node name="falling_platform" parent="." unique_id=1437360516 instance=ExtResource("27_v84nd")]
+[node name="falling_platform" parent="." unique_id=1828698289 instance=ExtResource("27_v84nd")]
 position = Vector2(203, -12.5)
 
 [node name="Sprite2D2" parent="." unique_id=77579572 instance=ExtResource("28_pr2yf")]
@@ -1423,6 +1423,21 @@ position = Vector2(152, -12.5)
 [node name="Sprite2D3" parent="." unique_id=1420116767 instance=ExtResource("28_pr2yf")]
 position = Vector2(131.99998, -121.5)
 scale = Vector2(6.4166684, 1)
+
+[node name="Sprite2D" parent="." unique_id=2128267305 instance=ExtResource("28_pr2yf")]
+position = Vector2(-23, -141.5)
+
+[node name="Sprite2D4" parent="." unique_id=672441762 instance=ExtResource("28_pr2yf")]
+position = Vector2(-81, -167.5)
+
+[node name="CharacterBody2D2" parent="." unique_id=1437360516 instance=ExtResource("27_v84nd")]
+position = Vector2(-137, -168.5)
+
+[node name="CharacterBody2D3" parent="." unique_id=456582420 instance=ExtResource("27_v84nd")]
+position = Vector2(-192, -169.5)
+
+[node name="CharacterBody2D4" parent="." unique_id=68753468 instance=ExtResource("27_v84nd")]
+position = Vector2(-248, -169.5)
 
 [connection signal="pressed" from="Pause Menu/Pause/PausePanel/VBoxContainer/Resume" to="Pause Menu/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause Menu/Pause/PausePanel/VBoxContainer/Menu" to="Pause Menu/Pause" method="_on_menu_pressed"]

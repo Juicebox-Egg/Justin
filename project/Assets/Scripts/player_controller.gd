@@ -80,17 +80,13 @@ func _input(event):
 # respawn
 func respawn(respawn_pos: Vector2):
 	self.visible = false
-	
 	self.global_position = respawn_pos
 	velocity = Vector2.ZERO
-	
 	self.visible = true
 	can_move = true
 	
 	player_animator.reset_after_death()
-	
 	await get_tree().create_timer(0.1).timeout
-	
 	took_damage = false
 	is_respawning = false
 
@@ -123,11 +119,8 @@ func _physics_process(delta: float) -> void:
 				can_move = false
 				
 				velocity = Vector2.ZERO
-				
 				player_animator.play_death()
-				
 				await get_tree().create_timer(0.3).timeout
-				
 				respawn(player_checkpont_pos)
 
 # Basic Movement
@@ -142,7 +135,7 @@ func _physics_process(delta: float) -> void:
 				velocity.x = direction * speed * speed_multiplier
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed * speed_multiplier)
-			
+		
 	#conveyor platform
 	velocity.x += conveyor_velocity
 	move_and_slide()
