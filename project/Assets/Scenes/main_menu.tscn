@@ -50,26 +50,42 @@ anchor_bottom = 0.5
 offset_left = -335.0
 offset_top = 96.0
 offset_right = -205.0
-offset_bottom = 162.0
+offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "World 0"
 
 [node name="world1" type="Button" parent="." unique_id=1792444999]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -127.0
-offset_top = 7.0
-offset_right = 3.0
-offset_bottom = 73.0
+anchors_preset = -1
+anchor_left = 0.503
+anchor_top = 0.51100004
+anchor_right = 0.503
+anchor_bottom = 0.51100004
+offset_left = -130.45605
+offset_top = -0.12802124
+offset_right = -0.4560547
+offset_bottom = 66.87198
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "World 1"
+
+[node name="world2" type="Button" parent="." unique_id=943332929]
+offset_left = 627.0
+offset_top = 210.0
+offset_right = 757.0
+offset_bottom = 279.0
+theme_override_font_sizes/font_size = 30
+text = "World 2"
+
+[node name="world3" type="Button" parent="." unique_id=740900388]
+offset_left = 850.0
+offset_top = 401.0
+offset_right = 980.0
+offset_bottom = 472.0
+theme_override_font_sizes/font_size = 30
+text = "World 3"
 
 [node name="exit" type="Button" parent="." unique_id=983746547]
 anchors_preset = 8
@@ -78,9 +94,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -55.0
-offset_top = 253.0
+offset_top = 254.0
 offset_right = 75.0
-offset_bottom = 319.0
+offset_bottom = 323.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
@@ -88,4 +104,6 @@ text = "Exit"
 
 [connection signal="pressed" from="world0" to="." method="_on_world_0_pressed"]
 [connection signal="pressed" from="world1" to="." method="_on_world_1_pressed"]
+[connection signal="pressed" from="world2" to="." method="_on_world_2_pressed"]
+[connection signal="pressed" from="world3" to="." method="_on_world_3_pressed"]
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]

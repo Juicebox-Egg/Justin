@@ -9,7 +9,6 @@ var speed_multiplier = 20.0
 var jump_multiplier = -30.0
 var direction = 0
 
-
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # simple dash
@@ -100,7 +99,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		if dashing:
 			velocity.y = 0.0
-			#print(velocity.y) was elif below
 		elif raycast.is_colliding() and velocity.y > 0:
 			velocity += get_gravity() * delta / 4
 		else:
@@ -159,7 +157,6 @@ func _physics_process(delta: float) -> void:
 # wall_jump
 func jump():
 	if Input.is_action_just_pressed("jump"):
-		print(raycast.is_colliding())
 		if is_on_floor():
 			velocity.y = jump_power * jump_multiplier
 		if raycast.is_colliding() and Input.is_action_pressed("move_right"):

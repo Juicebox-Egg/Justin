@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 [autoload]
 
 GlobalScript="*uid://i00fm5oyfyil"
+SceneTransition="*uid://cjih0cxltnhix"
 
 [display]
 

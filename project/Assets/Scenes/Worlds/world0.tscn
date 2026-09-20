@@ -26,8 +26,6 @@
 [ext_resource type="Script" uid="uid://b50342hduh5mv" path="res://Assets/Scripts/pause.gd" id="20_66eam"]
 [ext_resource type="Texture2D" uid="uid://dogtvln14dly6" path="res://Assets/Sprites/Pause.png" id="24_bypsa"]
 [ext_resource type="PackedScene" uid="uid://dg5nd8fq1miwn" path="res://Assets/Scenes/teleport.tscn" id="25_agm8f"]
-[ext_resource type="PackedScene" uid="uid://bqlljaxabbujl" path="res://Assets/Scenes/falling_platform.tscn" id="27_v84nd"]
-[ext_resource type="PackedScene" uid="uid://bq7jsmxpqlei7" path="res://Assets/Scenes/conveyer_platform.tscn" id="28_pr2yf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rmegx"]
 texture = ExtResource("6_waeb4")
@@ -1048,23 +1046,26 @@ position = Vector2(348, 287.5)
 
 [node name="Parallax2D2" type="Parallax2D" parent="Node2D/ParallaxBackground" unique_id=171237697]
 texture_filter = 1
-scroll_scale = Vector2(0.3, 0.3)
-scroll_offset = Vector2(100, 0)
-repeat_size = Vector2(700, 300)
+scroll_scale = Vector2(2.5, 3)
+scroll_offset = Vector2(700, 0)
+repeat_size = Vector2(700, 0)
 repeat_times = 2
 
 [node name="Back_Background" type="Sprite2D" parent="Node2D/ParallaxBackground/Parallax2D2" unique_id=1413965675]
-position = Vector2(950, 150)
+position = Vector2(1007, -4)
+scale = Vector2(1.6984822, 1.9777082)
 texture = ExtResource("1_0s1vm")
 
 [node name="Parallax2D" type="Parallax2D" parent="Node2D/ParallaxBackground" unique_id=1325410157]
 texture_filter = 1
-scroll_scale = Vector2(0.2, 0.2)
-scroll_offset = Vector2(100, 0)
-repeat_size = Vector2(700, 300)
+scroll_scale = Vector2(2.3, 3)
+scroll_offset = Vector2(700, 0)
+repeat_size = Vector2(600, 0)
+repeat_times = 2
 
 [node name="Front_Background" type="Sprite2D" parent="Node2D/ParallaxBackground/Parallax2D" unique_id=824971911]
-position = Vector2(609, -137.5)
+position = Vector2(1204, -18.999996)
+scale = Vector2(2.2771428, 2.08)
 texture = ExtResource("1_o1idn")
 
 [node name="checkpoint" parent="." unique_id=152195300 instance=ExtResource("15_ql3de")]
@@ -1250,7 +1251,7 @@ shape = SubResource("RectangleShape2D_agm8f")
 [node name="Spikes" type="TileMap" parent="." unique_id=1504822504]
 tile_set = SubResource("TileSet_r1drb")
 format = 2
-layer_0/tile_data = PackedInt32Array(458756, 393218, 4, 458755, 393218, 4, 458754, 393218, 4, 458753, 393218, 4, 458752, 393218, 4, 327695, 393218, 4, 327696, 393218, 4, 327697, 393218, 4, 327698, 393218, 4, 327699, 393218, 4, 327700, 393218, 4, 327701, 393218, 4, 327702, 393218, 4, 327703, 393218, 4, 327704, 393218, 4, 327705, 393218, 4, 327706, 393218, 4, 327707, 393218, 4, 327708, 393218, 4)
+layer_0/tile_data = PackedInt32Array(458756, 393218, 4, 458755, 393218, 4, 458754, 393218, 4, 458753, 393218, 4, 458752, 393218, 4, 327695, 393218, 4, 327696, 393218, 4, 327697, 393218, 4, 327698, 393218, 4, 327699, 393218, 4, 327700, 393218, 4, 327701, 393218, 4, 327702, 393218, 4, 327703, 393218, 4, 327704, 393218, 4, 327705, 393218, 4, 327706, 393218, 4, 327707, 393218, 4, 327708, 393218, 4, -56, 393218, 4, -57, 393218, 4)
 
 [node name="TileMap_noWALL" type="TileMap" parent="." unique_id=638860096]
 tile_set = SubResource("TileSet_0s1vm")
@@ -1414,30 +1415,29 @@ text = "Exit Game"
 visible = false
 position = Vector2(593, -63.5)
 
-[node name="falling_platform" parent="." unique_id=1828698289 instance=ExtResource("27_v84nd")]
-position = Vector2(203, -12.5)
+[node name="Top Left" type="CanvasLayer" parent="." unique_id=912356671]
 
-[node name="Sprite2D2" parent="." unique_id=77579572 instance=ExtResource("28_pr2yf")]
-position = Vector2(152, -12.5)
+[node name="Panel" type="Panel" parent="Top Left" unique_id=2005090375]
+anchors_preset = -1
+anchor_right = 0.032118056
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 223.0
+offset_bottom = 131.0
+metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D3" parent="." unique_id=1420116767 instance=ExtResource("28_pr2yf")]
-position = Vector2(131.99998, -121.5)
-scale = Vector2(6.4166684, 1)
-
-[node name="Sprite2D" parent="." unique_id=2128267305 instance=ExtResource("28_pr2yf")]
-position = Vector2(-23, -141.5)
-
-[node name="Sprite2D4" parent="." unique_id=672441762 instance=ExtResource("28_pr2yf")]
-position = Vector2(-81, -167.5)
-
-[node name="CharacterBody2D2" parent="." unique_id=1437360516 instance=ExtResource("27_v84nd")]
-position = Vector2(-137, -168.5)
-
-[node name="CharacterBody2D3" parent="." unique_id=456582420 instance=ExtResource("27_v84nd")]
-position = Vector2(-192, -169.5)
-
-[node name="CharacterBody2D4" parent="." unique_id=68753468 instance=ExtResource("27_v84nd")]
-position = Vector2(-248, -169.5)
+[node name="Label" type="Label" parent="Top Left/Panel" unique_id=1395246901]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -1.0
+offset_right = 219.0
+offset_bottom = 100.0
+text = "[ ESCAPE ] - Pause Menu
+[ SHIFT ] - Dash
+[ SPACE ] - Jump
+[ A & D ] - Move Left & Right
+[ S ] - Move Down Some Platform"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Pause Menu/Pause/PausePanel/VBoxContainer/Resume" to="Pause Menu/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause Menu/Pause/PausePanel/VBoxContainer/Menu" to="Pause Menu/Pause" method="_on_menu_pressed"]

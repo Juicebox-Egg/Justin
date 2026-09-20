@@ -64,6 +64,7 @@ func _process(delta):
 		animation_player.play("move")
 	else:
 		animation_player.play("idle")
+
 	# plays jump anim
 	if player_controller.velocity.y < 0.0:
 		animation_player.play("jump_anim")
