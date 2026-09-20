@@ -53,8 +53,10 @@ offset_right = -205.0
 offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 30
-text = "World 0"
+theme_override_font_sizes/font_size = 20
+text = "START HERE 
+World 0
+"
 
 [node name="world1" type="Button" parent="." unique_id=1792444999]
 anchors_preset = -1

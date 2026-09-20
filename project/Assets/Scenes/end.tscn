@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://d34omgs6w0dfy"]
+
+[ext_resource type="Texture2D" uid="uid://blfqki84n7sv3" path="res://Assets/Sprites/Endd.png" id="1_5gsiq"]
+[ext_resource type="Script" uid="uid://dtkcemi7ca1fy" path="res://Assets/Scripts/end.gd" id="1_vew1g"]
+[ext_resource type="Texture2D" uid="uid://dw8h0u4l1uk0w" path="res://Assets/Sprites/Wood-Platform.png" id="2_vew1g"]
+
+[node name="Node" type="Node" unique_id=27600873]
+script = ExtResource("1_vew1g")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=188073833]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_5gsiq")
+
+[node name="WoodPlatform" type="Sprite2D" parent="." unique_id=203881628]
+position = Vector2(148.00002, 585)
+scale = Vector2(6.536458, 11.890624)
+texture = ExtResource("2_vew1g")
+
+[node name="exit" type="Button" parent="." unique_id=95772082]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -558.0
+offset_top = 213.0
+offset_right = -297.0
+offset_bottom = 308.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 45
+text = "END GAME"
+
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]

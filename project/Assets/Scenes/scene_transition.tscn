@@ -48,7 +48,7 @@ modulate = Color(1, 1, 1, 0)
 offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
-color = Color(0.23031491, 0.23031494, 0.23031494, 1)
+color = Color(0.064952165, 0.83428395, 0.19048423, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1908862886]
 root_node = NodePath("../dissovle_rect")

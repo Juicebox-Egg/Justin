@@ -1333,22 +1333,23 @@ trail_lifetime = 0.6
 process_material = SubResource("ParticleProcessMaterial_pmx3x")
 
 [node name="SpeechBubble" type="Sprite2D" parent="." unique_id=546368994]
-position = Vector2(-120, -57)
-scale = Vector2(0.8750001, 0.5374999)
+position = Vector2(-133, -57)
+scale = Vector2(0.55, 0.5374999)
 texture = ExtResource("19_pqga5")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=2083094230]
-offset_left = -144.0
-offset_top = -82.0
-offset_right = -76.0
-offset_bottom = -27.0
+offset_left = -147.0
+offset_top = -82.5
+offset_right = -79.0
+offset_bottom = -27.5
 theme_override_fonts/bold_font = ExtResource("19_du7no")
 theme_override_font_sizes/normal_font_size = 5
 theme_override_font_sizes/bold_font_size = 7
 bbcode_enabled = true
 text = "[b][wave amp=20freq=5speed=3ease=-2.0][color=#00FFFF][outline_size=5]
-Hey! 
-You can press SHIFT to dash!"
+     Hey! 
+Read the 
+Top Left"
 metadata/_edit_use_anchors_ = true
 
 [node name="Pause Menu" type="CanvasLayer" parent="." unique_id=270265697]
@@ -1372,7 +1373,7 @@ layout_mode = 0
 offset_left = -576.0
 offset_top = -328.0
 offset_right = 580.0
-offset_bottom = 320.0
+offset_bottom = 332.0
 texture = ExtResource("24_bypsa")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pause Menu/Pause/PausePanel" unique_id=1218746696]
@@ -1411,6 +1412,28 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_o5ag2")
 text = "Exit Game"
 
+[node name="Issue Panel" type="Panel" parent="Pause Menu/Pause/PausePanel" unique_id=385634352]
+layout_mode = 0
+offset_left = 250.0
+offset_top = -2.0
+offset_right = 545.0
+offset_bottom = 219.0
+
+[node name="Description" type="Label" parent="Pause Menu/Pause/PausePanel/Issue Panel" unique_id=1971539331]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 6.0
+offset_right = 285.0
+offset_bottom = 167.0
+text = "Currently There is an Issue with 
+using Pause Menu, 
+Going to Main Menu, then pressing 
+any World Level. 
+To Fix this, simply press the
+Pause Menu again, then go into the
+Main Menu, and press any World
+Level. This should fix it."
+
 [node name="tp" parent="." unique_id=1549017035 instance=ExtResource("25_agm8f")]
 visible = false
 position = Vector2(593, -63.5)
@@ -1434,10 +1457,20 @@ offset_right = 219.0
 offset_bottom = 100.0
 text = "[ ESCAPE ] - Pause Menu
 [ SHIFT ] - Dash
-[ SPACE ] - Jump
+[ SPACE ] - Jump & Wall Jump
 [ A & D ] - Move Left & Right
 [ S ] - Move Down Some Platform"
 metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="." unique_id=66581202]
+offset_left = 250.0
+offset_top = 8.5
+offset_right = 374.0
+offset_bottom = 51.5
+theme_override_font_sizes/font_size = 10
+text = "Make sure you're 
+'holding A or D into the wall' 
+before jumping off to Wall Jump"
 
 [connection signal="pressed" from="Pause Menu/Pause/PausePanel/VBoxContainer/Resume" to="Pause Menu/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause Menu/Pause/PausePanel/VBoxContainer/Menu" to="Pause Menu/Pause" method="_on_menu_pressed"]

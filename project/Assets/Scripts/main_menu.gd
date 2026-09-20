@@ -18,6 +18,5 @@ func _on_exit_pressed() -> void:
 func _on_world_2_pressed() -> void:
 	SceneTransition.change_scene_to_file("res://Assets/Scenes/Worlds/world2.tscn")
 
-
 func _on_world_3_pressed() -> void:
-	pass # Replace with function body.
+	SceneTransition.change_scene_to_file("res://Assets/Scenes/Worlds/world3.tscn")
