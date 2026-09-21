@@ -1352,6 +1352,53 @@ Read the
 Top Left"
 metadata/_edit_use_anchors_ = true
 
+[node name="tp" parent="." unique_id=1549017035 instance=ExtResource("25_agm8f")]
+visible = false
+position = Vector2(593, -63.5)
+
+[node name="Label" type="Label" parent="." unique_id=66581202]
+offset_left = 250.0
+offset_top = 8.5
+offset_right = 374.0
+offset_bottom = 51.5
+theme_override_font_sizes/font_size = 10
+text = "Make sure you're 
+'holding A or D into the wall' 
+before jumping off to Wall Jump"
+
+[node name="Label2" type="Label" parent="." unique_id=1446679841]
+offset_left = -156.0
+offset_top = 22.5
+offset_right = -29.0
+offset_bottom = 53.5
+theme_override_font_sizes/font_size = 10
+text = "Mission: Get the Crystal 
+                at End for Mother"
+
+[node name="Top Left" type="CanvasLayer" parent="." unique_id=912356671]
+
+[node name="Panel" type="Panel" parent="Top Left" unique_id=2005090375]
+anchors_preset = -1
+anchor_right = 0.032118056
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 223.0
+offset_bottom = 131.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Top Left/Panel" unique_id=1395246901]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -1.0
+offset_right = 219.0
+offset_bottom = 100.0
+text = "[ ESCAPE ] - Pause Menu
+[ SHIFT ] - Dash
+[ SPACE ] - Jump & Wall Jump
+[ A & D ] - Move Left & Right
+[ S ] - Move Down Some Platform"
+metadata/_edit_use_anchors_ = true
+
 [node name="Pause Menu" type="CanvasLayer" parent="." unique_id=270265697]
 
 [node name="Pause" type="Node" parent="Pause Menu" unique_id=1938443393]
@@ -1433,44 +1480,6 @@ To Fix this, simply press the
 Pause Menu again, then go into the
 Main Menu, and press any World
 Level. This should fix it."
-
-[node name="tp" parent="." unique_id=1549017035 instance=ExtResource("25_agm8f")]
-visible = false
-position = Vector2(593, -63.5)
-
-[node name="Top Left" type="CanvasLayer" parent="." unique_id=912356671]
-
-[node name="Panel" type="Panel" parent="Top Left" unique_id=2005090375]
-anchors_preset = -1
-anchor_right = 0.032118056
-offset_left = 3.0
-offset_top = 4.0
-offset_right = 223.0
-offset_bottom = 131.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="Top Left/Panel" unique_id=1395246901]
-layout_mode = 0
-offset_left = 3.0
-offset_top = -1.0
-offset_right = 219.0
-offset_bottom = 100.0
-text = "[ ESCAPE ] - Pause Menu
-[ SHIFT ] - Dash
-[ SPACE ] - Jump & Wall Jump
-[ A & D ] - Move Left & Right
-[ S ] - Move Down Some Platform"
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="." unique_id=66581202]
-offset_left = 250.0
-offset_top = 8.5
-offset_right = 374.0
-offset_bottom = 51.5
-theme_override_font_sizes/font_size = 10
-text = "Make sure you're 
-'holding A or D into the wall' 
-before jumping off to Wall Jump"
 
 [connection signal="pressed" from="Pause Menu/Pause/PausePanel/VBoxContainer/Resume" to="Pause Menu/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause Menu/Pause/PausePanel/VBoxContainer/Menu" to="Pause Menu/Pause" method="_on_menu_pressed"]

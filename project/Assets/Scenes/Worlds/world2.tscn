@@ -1329,6 +1329,30 @@ position = Vector2(3626, -1669)
 [node name="CharacterBody2D" parent="." unique_id=1415082028 instance=ExtResource("1_o0itv")]
 position = Vector2(2040, -582)
 
+[node name="Top Left" type="CanvasLayer" parent="." unique_id=2002018303]
+
+[node name="Panel" type="Panel" parent="Top Left" unique_id=36225272]
+anchors_preset = -1
+anchor_right = 0.032118056
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 223.0
+offset_bottom = 131.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Top Left/Panel" unique_id=153839194]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -1.0
+offset_right = 219.0
+offset_bottom = 100.0
+text = "[ ESCAPE ] - Pause Menu
+[ SHIFT ] - Dash
+[ SPACE ] - Jump & Wall Jump
+[ A & D ] - Move Left & Right
+[ S ] - Move Down Some Platform"
+metadata/_edit_use_anchors_ = true
+
 [node name="Pause Menu" type="CanvasLayer" parent="." unique_id=550641143]
 
 [node name="Pause" type="Node" parent="Pause Menu" unique_id=1367141046]
@@ -1410,30 +1434,6 @@ To Fix this, simply press the
 Pause Menu again, then go into the
 Main Menu, and press any World
 Level. This should fix it."
-
-[node name="Top Left" type="CanvasLayer" parent="." unique_id=2002018303]
-
-[node name="Panel" type="Panel" parent="Top Left" unique_id=36225272]
-anchors_preset = -1
-anchor_right = 0.032118056
-offset_left = 3.0
-offset_top = 4.0
-offset_right = 223.0
-offset_bottom = 131.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="Top Left/Panel" unique_id=153839194]
-layout_mode = 0
-offset_left = 3.0
-offset_top = -1.0
-offset_right = 219.0
-offset_bottom = 100.0
-text = "[ ESCAPE ] - Pause Menu
-[ SHIFT ] - Dash
-[ SPACE ] - Jump & Wall Jump
-[ A & D ] - Move Left & Right
-[ S ] - Move Down Some Platform"
-metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Pause Menu/Pause/PausePanel/VBoxContainer/Resume" to="Pause Menu/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause Menu/Pause/PausePanel/VBoxContainer/Menu" to="Pause Menu/Pause" method="_on_menu_pressed"]
