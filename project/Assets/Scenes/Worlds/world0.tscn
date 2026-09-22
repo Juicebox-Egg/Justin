@@ -1354,7 +1354,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="tp" parent="." unique_id=1549017035 instance=ExtResource("25_agm8f")]
 visible = false
-position = Vector2(593, -63.5)
+position = Vector2(568, -64.5)
 
 [node name="Label" type="Label" parent="." unique_id=66581202]
 offset_left = 250.0

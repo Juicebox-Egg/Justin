@@ -3,6 +3,18 @@
 [ext_resource type="Script" uid="uid://dj3ceiuoxdgvl" path="res://Assets/Scripts/main_menu.gd" id="1_cbhea"]
 [ext_resource type="Texture2D" uid="uid://cenlrq451bkgk" path="res://Assets/Sprites/patterns.png" id="2_cbhea"]
 [ext_resource type="Texture2D" uid="uid://bf33n52tuirsc" path="res://Assets/Sprites/MainMainBackground1.png" id="2_fsbqx"]
+[ext_resource type="Texture2D" uid="uid://bynodq4uqf4iu" path="res://Assets/Sprites/Buttons/button.png" id="4_fadmi"]
+[ext_resource type="Texture2D" uid="uid://ux0cf6x20t1p" path="res://Assets/Sprites/Buttons/button-press.png" id="5_shbfh"]
+[ext_resource type="Texture2D" uid="uid://c8wpcnjw1uyn0" path="res://Assets/Sprites/Buttons/button-hover.png" id="6_hxcs8"]
+[ext_resource type="Texture2D" uid="uid://qpd6ibodlyso" path="res://Assets/Sprites/Buttons/button_1.png" id="7_xkmpe"]
+[ext_resource type="Texture2D" uid="uid://dqkkjyjv34rbf" path="res://Assets/Sprites/Buttons/button_1-press.png" id="8_pd3f2"]
+[ext_resource type="Texture2D" uid="uid://b7g6vffuklic3" path="res://Assets/Sprites/Buttons/button_1-hover.png" id="9_jkcs5"]
+[ext_resource type="Texture2D" uid="uid://bq0vbxw4obpil" path="res://Assets/Sprites/Buttons/button_2.png" id="10_0youy"]
+[ext_resource type="Texture2D" uid="uid://05yuetnyl6ff" path="res://Assets/Sprites/Buttons/button_2-press.png" id="11_o6fo6"]
+[ext_resource type="Texture2D" uid="uid://bmwy85qfbib64" path="res://Assets/Sprites/Buttons/button_2-hover.png" id="12_m3o7a"]
+[ext_resource type="Texture2D" uid="uid://bk12wrlxgdfgp" path="res://Assets/Sprites/Buttons/button_3.png" id="13_s707j"]
+[ext_resource type="Texture2D" uid="uid://dphfuybrv5h7h" path="res://Assets/Sprites/Buttons/button_3-press.png" id="14_00jt8"]
+[ext_resource type="Texture2D" uid="uid://djtn1hwumhnlj" path="res://Assets/Sprites/Buttons/button_3-hover.png" id="15_wdfnr"]
 
 [sub_resource type="Shader" id="Shader_tanm1"]
 code = "shader_type canvas_item;
@@ -41,53 +53,41 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_fsbqx")
 
-[node name="world0" type="Button" parent="." unique_id=575973679]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -335.0
-offset_top = 96.0
-offset_right = -205.0
-offset_bottom = 164.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "START HERE 
-World 0
-"
+[node name="world0" type="TextureButton" parent="." unique_id=1400524881]
+offset_left = 242.0
+offset_top = 427.0
+offset_right = 370.0
+offset_bottom = 491.0
+texture_normal = ExtResource("4_fadmi")
+texture_pressed = ExtResource("5_shbfh")
+texture_hover = ExtResource("6_hxcs8")
 
-[node name="world1" type="Button" parent="." unique_id=1792444999]
-anchors_preset = -1
-anchor_left = 0.503
-anchor_top = 0.51100004
-anchor_right = 0.503
-anchor_bottom = 0.51100004
-offset_left = -130.45605
-offset_top = -0.12802124
-offset_right = -0.4560547
-offset_bottom = 66.87198
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 30
-text = "World 1"
+[node name="world1" type="TextureButton" parent="." unique_id=1061253764]
+offset_left = 450.0
+offset_top = 337.0
+offset_right = 578.0
+offset_bottom = 401.0
+texture_normal = ExtResource("7_xkmpe")
+texture_pressed = ExtResource("8_pd3f2")
+texture_hover = ExtResource("9_jkcs5")
 
-[node name="world2" type="Button" parent="." unique_id=943332929]
-offset_left = 627.0
-offset_top = 210.0
-offset_right = 757.0
-offset_bottom = 279.0
-theme_override_font_sizes/font_size = 30
-text = "World 2"
+[node name="world2" type="TextureButton" parent="." unique_id=1516531591]
+offset_left = 628.0
+offset_top = 214.0
+offset_right = 756.0
+offset_bottom = 278.0
+texture_normal = ExtResource("10_0youy")
+texture_pressed = ExtResource("11_o6fo6")
+texture_hover = ExtResource("12_m3o7a")
 
-[node name="world3" type="Button" parent="." unique_id=740900388]
-offset_left = 850.0
-offset_top = 401.0
-offset_right = 980.0
-offset_bottom = 472.0
-theme_override_font_sizes/font_size = 30
-text = "World 3"
+[node name="world3" type="TextureButton" parent="." unique_id=677829027]
+offset_left = 851.0
+offset_top = 407.0
+offset_right = 979.0
+offset_bottom = 471.0
+texture_normal = ExtResource("13_s707j")
+texture_pressed = ExtResource("14_00jt8")
+texture_hover = ExtResource("15_wdfnr")
 
 [node name="exit" type="Button" parent="." unique_id=983746547]
 anchors_preset = 8
@@ -104,8 +104,8 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "Exit"
 
-[connection signal="pressed" from="world0" to="." method="_on_world_0_pressed"]
-[connection signal="pressed" from="world1" to="." method="_on_world_1_pressed"]
+[connection signal="pressed" from="world0" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="world1" to="." method="_on_texture_button_2_pressed"]
 [connection signal="pressed" from="world2" to="." method="_on_world_2_pressed"]
 [connection signal="pressed" from="world3" to="." method="_on_world_3_pressed"]
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]

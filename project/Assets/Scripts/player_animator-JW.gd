@@ -35,6 +35,3 @@ func _process(delta):
 		animation_player.play("Dash")
 		await animation_player.animation_finished
 		
-	# plays death anim
-	#if player_controller.took_damage = true:
-		#animation_player.play("fall")

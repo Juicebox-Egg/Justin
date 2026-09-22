@@ -182,7 +182,7 @@ shape = SubResource("CapsuleShape2D_g5ct4")
 wait_time = 0.3
 
 [node name="dash_again" type="Timer" parent="." unique_id=1984070354]
-wait_time = 0.35
+wait_time = 0.45
 
 [node name="ShakeCam" parent="." unique_id=577677240 node_paths=PackedStringArray("follow_node") instance=ExtResource("2_t1xgp")]
 position = Vector2(0, -19)
@@ -201,7 +201,6 @@ one_shot = true
 autostart = true
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=747438054]
-visible = false
 position = Vector2(0, -10)
 energy = 0.5
 texture = SubResource("GradientTexture2D_23lac")

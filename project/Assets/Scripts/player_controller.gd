@@ -107,6 +107,7 @@ func _physics_process(delta: float) -> void:
 	wall_slide(delta)
 
 # Spikes
+# If the player collides with a 'spike' the player took_damage and respawns to the latest checkpoint position.
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		
@@ -122,6 +123,8 @@ func _physics_process(delta: float) -> void:
 				respawn(player_checkpont_pos)
 
 # Basic Movement
+# the velocity/speed for the player to move left and right.
+# This also includes the dash's speed being multiplied by the base moving speed.
 	if can_move == false:
 		return
 	else:
@@ -134,11 +137,12 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed * speed_multiplier)
 		
-	#conveyor platform
+# Conveyor Platform
 	velocity.x += conveyor_velocity
 	move_and_slide()
 	
-# falling platform
+# Falling platform
+# Detects if the falling platform has collided with the player or not.
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
@@ -146,7 +150,8 @@ func _physics_process(delta: float) -> void:
 		if collider.has_method("collide_with"):
 			collider.collide_with()
 
-# coyote jump
+# Coyote Jump
+# Gives a small window of time even after fully stepping off a platform to jump.
 	if is_on_floor() and jumping:
 		jumping = false
 	if was_on_floor and !is_on_floor() and not jumping:
@@ -154,7 +159,8 @@ func _physics_process(delta: float) -> void:
 		coyote_timer.start()
 	was_on_floor = is_on_floor()
 
-# wall_jump
+# Wall Jump
+# The raycast detects and determines a wall, allowing whether the player can walljump.
 func jump():
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
@@ -165,7 +171,9 @@ func jump():
 		if raycast.is_colliding() and Input.is_action_pressed("move_left"):
 			velocity.y = jump_power * jump_multiplier
 			velocity.x = wall_jump_pushback
-# wall_slide
+			
+# Wall Slide
+# the wall slide must be colliding with a wall and moving into it to be able to wall slide (without jumping)
 func wall_slide(delta):
 	if raycast.is_colliding() and !is_on_floor():
 		if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right"):
@@ -175,12 +183,14 @@ func wall_slide(delta):
 	else:
 		is_wall_sliding = false	
 
-# stops dashing
+# Stops Dashing
 func _on_dash_timer_timeout() -> void:
 	dashing = false
-# to dash again
+	
+# To Dash Again
 func _on_dash_again_timeout() -> void:
 	can_dash = true
-# coyote timer
+	
+# Coyote Timer
 func _on_coyote_timer_timeout() -> void:
 	coyote_jump = false
