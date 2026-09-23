@@ -330,10 +330,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0s1vm"]
-size = Vector2(12, 171)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_agm8f"]
-size = Vector2(73.125, 53)
+size = Vector2(50, 171)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sll2y"]
 texture = ExtResource("3_600ry")
@@ -364,7 +361,7 @@ texture_region_size = Vector2i(8, 8)
 3:4/0 = 0
 4:4/0 = 0
 6:4/0 = 0
-6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -2, 2, -2, 2, 4, -4, 4)
+6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0, 4, 0, 4, 4, -4, 4)
 7:4/0 = 0
 7:5/0 = 0
 0:6/0 = 0
@@ -1040,30 +1037,30 @@ expand_margin_bottom = 8.0
 [node name="Node2D" type="Node2D" unique_id=784559387]
 position = Vector2(348, 287.5)
 
-[node name="Node2D" type="Node2D" parent="." unique_id=1546681221]
+[node name="backgrounds" type="Node2D" parent="." unique_id=1546681221]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Node2D" unique_id=385433843]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="backgrounds" unique_id=385433843]
 
-[node name="Parallax2D2" type="Parallax2D" parent="Node2D/ParallaxBackground" unique_id=171237697]
+[node name="Parallax2D2" type="Parallax2D" parent="backgrounds/ParallaxBackground" unique_id=171237697]
 texture_filter = 1
 scroll_scale = Vector2(2.5, 3)
 scroll_offset = Vector2(700, 0)
 repeat_size = Vector2(700, 0)
 repeat_times = 2
 
-[node name="Back_Background" type="Sprite2D" parent="Node2D/ParallaxBackground/Parallax2D2" unique_id=1413965675]
+[node name="Back_Background" type="Sprite2D" parent="backgrounds/ParallaxBackground/Parallax2D2" unique_id=1413965675]
 position = Vector2(1007, -4)
 scale = Vector2(1.6984822, 1.9777082)
 texture = ExtResource("1_0s1vm")
 
-[node name="Parallax2D" type="Parallax2D" parent="Node2D/ParallaxBackground" unique_id=1325410157]
+[node name="Parallax2D" type="Parallax2D" parent="backgrounds/ParallaxBackground" unique_id=1325410157]
 texture_filter = 1
 scroll_scale = Vector2(2.3, 3)
 scroll_offset = Vector2(700, 0)
 repeat_size = Vector2(600, 0)
 repeat_times = 2
 
-[node name="Front_Background" type="Sprite2D" parent="Node2D/ParallaxBackground/Parallax2D" unique_id=824971911]
+[node name="Front_Background" type="Sprite2D" parent="backgrounds/ParallaxBackground/Parallax2D" unique_id=824971911]
 position = Vector2(1204, -18.999996)
 scale = Vector2(2.2771428, 2.08)
 texture = ExtResource("1_o1idn")
@@ -1223,30 +1220,8 @@ collision_mask = 769
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2062368294]
 visible = false
-position = Vector2(804, -7.5)
+position = Vector2(823, -7.5)
 shape = SubResource("RectangleShape2D_0s1vm")
-
-[node name="WALLBLOCK" type="StaticBody2D" parent="." unique_id=258915808]
-visible = false
-position = Vector2(-185, -126.5)
-collision_layer = 769
-collision_mask = 769
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WALLBLOCK" unique_id=1776061063]
-visible = false
-position = Vector2(15.4375, 28)
-shape = SubResource("RectangleShape2D_agm8f")
-
-[node name="WALLBLOCK" type="StaticBody2D" parent="WALLBLOCK" unique_id=795446004]
-visible = false
-position = Vector2(-185, -126.5)
-collision_layer = 769
-collision_mask = 769
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WALLBLOCK/WALLBLOCK" unique_id=1459909919]
-visible = false
-position = Vector2(243, 118)
-shape = SubResource("RectangleShape2D_agm8f")
 
 [node name="Spikes" type="TileMap" parent="." unique_id=1504822504]
 tile_set = SubResource("TileSet_r1drb")
@@ -1308,7 +1283,7 @@ position = Vector2(837, 216.5)
 scale = Vector2(0.78125, 0.71875)
 texture = ExtResource("15_du7no")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=284062163]
+[node name="WindEffect2" type="GPUParticles2D" parent="." unique_id=284062163]
 position = Vector2(56, -55)
 scale = Vector2(2.75, 0.9)
 amount = 20
@@ -1320,7 +1295,7 @@ trail_enabled = true
 trail_lifetime = 0.6
 process_material = SubResource("ParticleProcessMaterial_pmx3x")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=903012382]
+[node name="WindEffect" type="GPUParticles2D" parent="." unique_id=903012382]
 position = Vector2(48, -95)
 scale = Vector2(2.75, 0.9)
 amount = 20
@@ -1352,11 +1327,11 @@ Read the
 Top Left"
 metadata/_edit_use_anchors_ = true
 
-[node name="tp" parent="." unique_id=1549017035 instance=ExtResource("25_agm8f")]
+[node name="scene_transition" parent="." unique_id=1549017035 instance=ExtResource("25_agm8f")]
 visible = false
 position = Vector2(568, -64.5)
 
-[node name="Label" type="Label" parent="." unique_id=66581202]
+[node name="Tutorial" type="Label" parent="." unique_id=66581202]
 offset_left = 250.0
 offset_top = 8.5
 offset_right = 374.0
@@ -1366,7 +1341,7 @@ text = "Make sure you're
 'holding A or D into the wall' 
 before jumping off to Wall Jump"
 
-[node name="Label2" type="Label" parent="." unique_id=1446679841]
+[node name="Mission" type="Label" parent="." unique_id=1446679841]
 offset_left = -156.0
 offset_top = 22.5
 offset_right = -29.0

@@ -1126,11 +1126,11 @@ texture_region_size = Vector2i(8, 8)
 16:4/0 = 0
 16:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, -2, 2, -2, 4, 4, -4, 4)
 17:4/0 = 0
-17:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, -2, 2, -2, 4, 4, -4, 4)
+17:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0, 4, 0, 4, 4, -4, 4)
 18:4/0 = 0
 18:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 2, 2, -2, 2)
 19:4/0 = 0
-19:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 2, 2, -2, 2)
+19:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 0, -4, 0)
 0:5/0 = 0
 1:5/0 = 0
 2:5/0 = 0
@@ -1145,11 +1145,11 @@ texture_region_size = Vector2i(8, 8)
 16:5/0 = 0
 16:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, -2, 4, -4, 4, 4, -2, 2)
 17:5/0 = 0
-17:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, -2, 4, -4, 4, 4, -2, 2)
+17:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -4, 4, -4, 4, 4, 0, 4)
 18:5/0 = 0
 18:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 2, -2, 2, 2, -4, 4)
 19:5/0 = 0
-19:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 2, -2, 2, 2, -4, 4)
+19:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 0, -4, 0, 4, -4, 4)
 0:6/0 = 0
 1:6/0 = 0
 2:6/0 = 0
@@ -1553,7 +1553,6 @@ position = Vector2(1512, -880)
 position = Vector2(-323, 8)
 
 [node name="Top Left" type="CanvasLayer" parent="." unique_id=1745128853]
-visible = false
 
 [node name="Panel" type="Panel" parent="Top Left" unique_id=1176532464]
 anchors_preset = -1

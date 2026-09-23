@@ -206,10 +206,8 @@ energy = 0.5
 texture = SubResource("GradientTexture2D_23lac")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1033452572]
-visible = false
 
 [node name="RayCast2D" type="RayCast2D" parent="Node2D" unique_id=1756073897]
-visible = false
 position = Vector2(5, -10)
 target_position = Vector2(2, 0)
 collision_mask = 8

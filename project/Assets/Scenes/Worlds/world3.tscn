@@ -408,9 +408,9 @@ texture_region_size = Vector2i(8, 8)
 4:1/0 = 0
 5:1/0 = 0
 8:1/0 = 0
-8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -2, 4, -2, 4, 4, -4, 4)
 9:1/0 = 0
-9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -2, 4, -2, 4, 4, -4, 4)
 10:1/0 = 0
 11:1/0 = 0
 12:1/0 = 0
@@ -437,9 +437,9 @@ texture_region_size = Vector2i(8, 8)
 9:4/0 = 0
 9:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 10:4/0 = 0
-10:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+10:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 0, -4, 0)
 11:4/0 = 0
-11:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+11:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -4, 4, -4, 4, 4, 0, 4)
 0:5/0 = 0
 1:5/0 = 0
 2:5/0 = 0
@@ -450,9 +450,9 @@ texture_region_size = Vector2i(8, 8)
 9:5/0 = 0
 9:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 10:5/0 = 0
-10:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+10:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 0, -4, 0, 4, -4, 4)
 11:5/0 = 0
-11:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+11:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0, 4, 0, 4, 4, -4, 4)
 0:6/0 = 0
 1:6/0 = 0
 2:6/0 = 0
@@ -774,7 +774,7 @@ _data = {
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_ox3o0"]
-offsets = PackedFloat32Array(0.15254237, 0.34745762, 0.51129943, 0.6864407)
+offsets = PackedFloat32Array(0.15254237, 0.34745762, 0.4516129, 0.6979472)
 colors = PackedColorArray(1, 1, 1, 1, 0.71202785, 0.71202785, 0.71202785, 1, 0.40517235, 0.40517235, 0.40517235, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_257xt"]
@@ -898,7 +898,7 @@ position = Vector2(1877, -523.5)
 position = Vector2(547, 264)
 
 [node name="jump_pad2" parent="Jumpads" unique_id=785756203 instance=ExtResource("5_dcd1k")]
-position = Vector2(721, 124)
+position = Vector2(721, 128)
 
 [node name="jump_pad3" parent="Jumpads" unique_id=189900409 instance=ExtResource("5_dcd1k")]
 position = Vector2(720, 55)
@@ -1013,8 +1013,8 @@ color = Color(0.78794587, 0, 0.18092802, 1)
 texture = SubResource("GradientTexture2D_257xt")
 
 [node name="PointLight2D8" type="PointLight2D" parent="PointLight" unique_id=1280733571]
-position = Vector2(559.7499, -39.000004)
-scale = Vector2(0.61327875, 1.1048387)
+position = Vector2(572, -26.124998)
+scale = Vector2(0.23828131, 0.889113)
 color = Color(0.78794587, 0, 0.18092802, 1)
 texture = SubResource("GradientTexture2D_257xt")
 
@@ -1111,6 +1111,12 @@ texture = SubResource("GradientTexture2D_257xt")
 [node name="PointLight2D24" type="PointLight2D" parent="PointLight" unique_id=253567772]
 position = Vector2(2172, -801)
 scale = Vector2(0.46753126, 0.9193549)
+color = Color(0.78794587, 0, 0.18092802, 1)
+texture = SubResource("GradientTexture2D_257xt")
+
+[node name="PointLight2D25" type="PointLight2D" parent="PointLight" unique_id=601163067]
+position = Vector2(574.00006, -60.000053)
+scale = Vector2(0.3606894, 0.3709673)
 color = Color(0.78794587, 0, 0.18092802, 1)
 texture = SubResource("GradientTexture2D_257xt")
 
