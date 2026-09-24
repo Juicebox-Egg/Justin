@@ -1,6 +1,8 @@
 extends Area2D
 class_name ConveyorArea2D
 
+const NO_CONVEYOR_SPEED := 0.0
+
 @export var horizontal_speed: float = 1.0
 var objects_array: Array[Node2D] = []
 var objects_speed: Array[float] = []
@@ -15,26 +17,25 @@ func _physics_process(delta: float) -> void:
 		if objects_array[i].is_on_floor() and objects_speed[i] != horizontal_speed:
 			objects_array[i].conveyor_velocity += horizontal_speed
 			objects_speed[i] = horizontal_speed
-		elif !objects_array[i].is_on_floor() and objects_speed[i] != 0.0:
+		elif !objects_array[i].is_on_floor() and objects_speed[i] != NO_CONVEYOR_SPEED:
 			objects_array[i].conveyor_velocity -= horizontal_speed
-			objects_speed[i] = 0.0
+			objects_speed[i] = NO_CONVEYOR_SPEED
 
 func _object_entered(object: Node2D) -> void:
 	if "conveyor_velocity" in object:
 		objects_array.append(object)
-		objects_speed.append(0.0)
+		objects_speed.append(NO_CONVEYOR_SPEED)
 	if !objects_array.is_empty():
 		set_physics_process(true)
 	
 func _object_exited(object: Node2D) -> void:
 	if "conveyor_velocity" in object and objects_array.has(object):
 		var object_pos: int = objects_array.find(object)
-		if objects_speed[object_pos] != 0.0:
+		if objects_speed[object_pos] != NO_CONVEYOR_SPEED:
 			objects_array[object_pos].conveyor_velocity -= horizontal_speed
 		objects_array.remove_at(object_pos)
 		objects_speed.remove_at(object_pos)
 		
 	if objects_array.is_empty():
 		set_physics_process(false)
-	
 	

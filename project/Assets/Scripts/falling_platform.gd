@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var shake_time: float = 0.5
 @export var fall_time: float = 0.2
 
+const DISABLED_COLLISION := 0
+
 var is_triggered = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -36,7 +38,7 @@ func collide_with():
 		return
 	# Start falling
 	set_physics_process(true)
-	# Let it fall for 0.3 seconds
+	# Let it fall for the specified duration
 	await get_tree().create_timer(fall_time).timeout
 
 	# Stop and hide the platform
@@ -44,8 +46,8 @@ func collide_with():
 	velocity = Vector2.ZERO
 	visible = false
 	# disable collision
-	collision_layer = 0
-	collision_mask = 0
+	collision_layer = DISABLED_COLLISION
+	collision_mask = DISABLED_COLLISION
 	await get_tree().create_timer(reset_time).timeout
 
 	global_position = reset_position

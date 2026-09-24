@@ -1,7 +1,9 @@
 extends Node2D
 
+const JUMP_HEIGHT := "jump_pad_height"
+const ACTIVATE_ANIMATION := "activate"
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.get("jump_pad_height"):
+	if JUMP_HEIGHT in body:
 		body.velocity.y = body.jump_pad_height
-		$Sprite2D/AnimationPlayer.play("activate")
+		$Sprite2D/AnimationPlayer.play(ACTIVATE_ANIMATION)
