@@ -1,224 +1,262 @@
 extends CharacterBody2D
 class_name PlayerController
 
+# Gets the project's default gravity to apply to the player.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-# export variables
-@export var speed : float = 10.0
-@export var jump_power : float = 10.0
-@export var player_animator : Node
+# Player movement settings that can be adjusted in the Inspector.
+@export var speed: float = 10.0
+@export var jump_power: float = 10.0
+@export var player_animator: Node
 
-# Input constants and groups
+# Input actions used to control the player.
 const INPUT_JUMP := "jump"
 const INPUT_MOVE_DOWN := "move_down"
 const INPUT_MOVE_LEFT := "move_left"
 const INPUT_MOVE_RIGHT := "move_right"
 const INPUT_DASH := "dash"
 
+# Groups and names used to identify the player and hazards.
 const PLAYER_GROUP := "player"
 const SPIKE_NAME := "Spikes"
 
-# basic player movement
-const speed_multiplier : float = 20.0
-const jump_multiplier : float = -30.0
-var direction : float = 0.0
+# Basic horizontal movement settings.
+const SPEED_MULTIPLIER: float = 20.0
+const JUMP_MULTIPLIER: float = -30.0
+var direction: float = 0.0
 
-# simple dash
-const dash_speed : float = 40.0
-var dashing : bool = false
-var can_dash : bool = true
+# Dash settings and state.
+const DASH_SPEED: float = 40.0
+var dashing: bool = false
+var can_dash: bool = true
 
-# spikes
-const respawn_delay : float = 0.3
-const respawn_reset_delay : float = 0.1
+# Controls the delay and state used when the player respawns after taking damage.
+const RESPAWN_DELAY: float = 0.3
+const RESPAWN_RESET_DELAY: float = 0.1
 
-var took_damage : bool = false
-var can_move : bool = true
-var is_respawning : bool = false
-var is_dying : bool = false
+var took_damage: bool = false
+var can_move: bool = true
+var is_respawning: bool = false
+var is_dying: bool = false
 
-# moving down platform
-const drop_through_distance : float = 1.0
-const drop_through_collision_layer: int = 10
+# Settings for dropping through one-way platforms.
+const DROP_THROUGH_DISTANCE: float = 1.0
+const DROP_THROUGH_COLLISION_LAYER: int = 10
 
-# falling platforms
-const collide_method := "collide_with"
+# Method name used to activate falling platforms.
+const COLLIDE_METHOD := "collide_with"
 
-# jump pad
-const jump_height: float = -165.0
-const jump_pad_height: float = -430.0
+# Normal jump and jump pad launch heights.
+const JUMP_HEIGHT: float = -165.0
+const JUMP_PAD_HEIGHT: float = -430.0
 
-# coyote jump
+# Coyote jump settings allow the player to jump shortly after leaving a platform.
+const COYOTE_FRAMES: int = 5
 var coyote_jump: bool = false
 var jumping: bool = false
-const coyote_frames: int = 5
 var was_on_floor: bool = false
 @onready var coyote_timer = $CoyoteTimer
 
-# wall jump raycast
+# Raycast used to detect walls for wall jumping and wall sliding.
 @onready var raycast = $Node2D/RayCast2D
 
-# wall jump & wall slide
-const wall_jump_pushback : float = 100
-const wall_slide_gravity : float = 100
-var is_wall_sliding : bool = false
-const wall_gravity_divisor: float = 4.0
+# Wall jump and wall slide settings.
+const WALL_JUMP_PUSHBACK: float = 100
+const WALL_SLIDE_GRAVITY: float = 100
+const WALL_GRAVITY_DIVISOR: float = 4.0
+var is_wall_sliding: bool = false
 
-# conveyor platform
+# Horizontal movement added by conveyor platforms.
 var conveyor_velocity: float = 0.0
 
-# checkpoint
-const no_checkpoint_position := Vector2(-999, -999)
-@export var player_checkpont_pos: Vector2 = no_checkpoint_position
+# Checkpoint position used when the player respawns.
+const NO_CHECKPOINT_POSITION := Vector2(-999, -999)
+@export var player_checkpoint_position: Vector2 = NO_CHECKPOINT_POSITION
 
-# coyote framerate
+
 func _ready() -> void:
-	coyote_timer.wait_time = (float(coyote_frames) / Engine.physics_ticks_per_second)
+	# Convert the coyote jump duration from frames into seconds.
+	coyote_timer.wait_time = float(COYOTE_FRAMES) / Engine.physics_ticks_per_second
+	# Add the player to the group so other objects can identify it.
 	add_to_group(PLAYER_GROUP)
-	
-	if GlobalScript.checkpoint_pos != no_checkpoint_position:
-		global_position = GlobalScript.checkpoint_pos
+
+	# Move the player to the saved checkpoint when one is active.
+	if GlobalScript.checkpoint_position != NO_CHECKPOINT_POSITION:
+		global_position = GlobalScript.checkpoint_position
+
 
 func _input(event) -> void:
-# Handle jump.
+	# Handles jumping.
+	# Allow the player to jump from the floor or during the coyote jump window.
 	if event.is_action_pressed(INPUT_JUMP) and (is_on_floor() or coyote_jump):
-		velocity.y = jump_power * jump_multiplier 
+		velocity.y = jump_power * JUMP_MULTIPLIER
 		jumping = true
-	# Handle jump down platform
-	if event.is_action_pressed(INPUT_MOVE_DOWN) and is_on_floor():
-		position.y += drop_through_distance
-		set_collision_mask_value(drop_through_collision_layer, false)
-	else:
-		set_collision_mask_value(drop_through_collision_layer, true)
 
-# dash
+	# Handle dropping through one-way platforms.
+	# Move the player slightly down and disable the platform collision.
+	# This allows the player to drop through the platform.
+	if event.is_action_pressed(INPUT_MOVE_DOWN) and is_on_floor():
+		position.y += DROP_THROUGH_DISTANCE
+		set_collision_mask_value(DROP_THROUGH_COLLISION_LAYER, false)
+	else:
+		# Re-enable the platform collision when the player is not dropping through it.
+		set_collision_mask_value(DROP_THROUGH_COLLISION_LAYER, true)
+
+	# Dash.
+	# Start a dash if the player has a dash available.
 	if Input.is_action_just_pressed(INPUT_DASH) and can_dash:
 		dashing = true
 		can_dash = false
 		velocity.y = 0.0
+		# Start the timers that control dash duration and dash recovery.
 		$dash_timer.start()
 		$dash_again.start()
-		
 
-# Respawn
+
+# Moves the player to a checkpoint and resets their damage state.
 func respawn(respawn_pos: Vector2) -> void:
 	self.visible = false
 	self.global_position = respawn_pos
 	velocity = Vector2.ZERO
 	self.visible = true
 	can_move = true
-	
+
+	# Reset the player's animation after respawning.
 	player_animator.reset_after_death()
-	await get_tree().create_timer(respawn_reset_delay).timeout
+	await get_tree().create_timer(RESPAWN_RESET_DELAY).timeout
+
+	# Allow the player to take damage and respawn again.
 	took_damage = false
 	is_respawning = false
 
 
 func _physics_process(delta: float) -> void:
-# Stops the player from moving while dying/respawning
+	# Prevent movement while the player is dying or being respawned.
 	if not can_move:
 		velocity = Vector2.ZERO
 		return
-		
-# Handles gravity
+
+	# Handles gravity.
+	# Apply gravity while the player is airborne.
 	if not is_on_floor():
 		if dashing:
+			# Prevent gravity from affecting the player during a dash.
 			velocity.y = 0.0
 		elif raycast.is_colliding() and velocity.y > 0.0:
-			velocity += get_gravity() * delta / wall_gravity_divisor
+			# Reduce gravity while sliding down a wall.
+			velocity += get_gravity() * delta / WALL_GRAVITY_DIVISOR
 		else:
+			# Apply normal gravity while falling.
 			velocity += get_gravity() * delta
-			
+
 	jump()
 	wall_slide(delta)
 
-# Spikes
-# Detects whether the player has collided with spikes.
+
+	# Spikes.
+	# Detect collisions with spikes and begin the respawn process.
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		
+
 		if collision.get_collider().name == SPIKE_NAME:
 			if not took_damage and not is_respawning:
 				took_damage = true
 				is_respawning = true
 				can_move = false
-				
+
+				# Stop movement and play the death animation before respawning.
 				velocity = Vector2.ZERO
 				player_animator.play_death()
-				await get_tree().create_timer(respawn_delay).timeout
-				respawn(player_checkpont_pos)
+				await get_tree().create_timer(RESPAWN_DELAY).timeout
+				respawn(player_checkpoint_position)
 
-# Basic Movement
-# the velocity/speed for the player to move left and right.
-# This also includes the dash's speed being multiplied by the base moving speed.
-	if can_move == false:
+
+	# Basic movement.
+	# Get the player's horizontal movement direction.
+	if not can_move:
 		return
 	else:
 		direction = Input.get_axis(INPUT_MOVE_LEFT, INPUT_MOVE_RIGHT)
 		if direction:
 			if dashing:
-				velocity.x = direction * speed * dash_speed
+				# Use the increased speed while dashing.
+				velocity.x = direction * speed * DASH_SPEED
 			else:
-				velocity.x = direction * speed * speed_multiplier
+				# Use normal movement speed.
+				velocity.x = direction * speed * SPEED_MULTIPLIER
 		else:
-			velocity.x = move_toward(velocity.x, 0, speed * speed_multiplier)
-		
-# Conveyor Platform
+			# Gradually slow the player when no movement input is held.
+			velocity.x = move_toward(velocity.x, 0, speed * SPEED_MULTIPLIER)
+
+	# Add conveyor movement to the player's horizontal velocity.
 	velocity.x += conveyor_velocity
 	move_and_slide()
-	
-# Falling platform
-# Detects if the falling platform has collided with the player or not.
+
+
+	# Falling platform.
+	# Detects if the falling platform has collided with the player or not.
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-		
-		if collider.has_method(collide_method):
-			collider.call(collide_method)
 
-# Coyote Jump
-# Gives a small window of time even after fully stepping off a platform to jump.
+		if collider.has_method(COLLIDE_METHOD):
+			collider.call(COLLIDE_METHOD)
+
+
+	# Coyote jump.
+	# Reset the jumping state when the player lands.
 	if is_on_floor() and jumping:
 		jumping = false
-	if was_on_floor and !is_on_floor() and not jumping:
+	# Start the coyote jump timer when the player has just left the floor.
+	if was_on_floor and not is_on_floor() and not jumping:
 		coyote_jump = true
 		coyote_timer.start()
+	# Store the current floor state for the next physics frame.
 	was_on_floor = is_on_floor()
 
-# Wall Jump
-# The raycast detects and determines a wall, allowing whether the player can walljump.
+
+# Handles normal jumps and wall jumps.
 func jump() -> void:
 	if Input.is_action_just_pressed(INPUT_JUMP):
 		if is_on_floor():
-			velocity.y = jump_power * jump_multiplier
-			
+			# Perform a normal jump when standing on the floor.
+			velocity.y = jump_power * JUMP_MULTIPLIER
+
 		if raycast.is_colliding() and Input.is_action_pressed(INPUT_MOVE_RIGHT):
-			velocity.y = jump_power * jump_multiplier
-			velocity.x = -wall_jump_pushback
-			
+			# Jump away from a wall on the player's right.
+			velocity.y = jump_power * JUMP_MULTIPLIER
+			velocity.x = -WALL_JUMP_PUSHBACK
+
 		if raycast.is_colliding() and Input.is_action_pressed(INPUT_MOVE_LEFT):
-			velocity.y = jump_power * jump_multiplier
-			velocity.x = wall_jump_pushback
-			
-# Wall Slide
-# the wall slide must be colliding with a wall and moving into it to be able to wall slide (without jumping)
-func wall_slide(delta : float) -> void:
-	if raycast.is_colliding() and !is_on_floor():
+			# Jump away from a wall on the player's left.
+			velocity.y = jump_power * JUMP_MULTIPLIER
+			velocity.x = WALL_JUMP_PUSHBACK
+
+
+# Wall slide.
+# Determines whether the player should be wall sliding.
+func wall_slide(delta: float) -> void:
+	if raycast.is_colliding() and not is_on_floor():
+		# Wall sliding begins when the player is airborne and presses toward the wall.
 		if Input.is_action_just_pressed(INPUT_MOVE_LEFT) or Input.is_action_just_pressed(INPUT_MOVE_RIGHT):
 			is_wall_sliding = true
 		else:
+			# Disable wall sliding when there is no suitable wall collision.
 			is_wall_sliding = false
 	else:
-		is_wall_sliding = false	
+		is_wall_sliding = false
 
-# Stops Dashing
+
+# Stop the current dash when the dash timer expires.
 func _on_dash_timer_timeout() -> void:
 	dashing = false
-	
-# To Dash Again
+
+
+# Allow the player to dash again after the recovery timer expires.
 func _on_dash_again_timeout() -> void:
 	can_dash = true
-	
-# Coyote Timer
+
+
+# End the coyote jump window when its timer expires.
 func _on_coyote_timer_timeout() -> void:
 	coyote_jump = false

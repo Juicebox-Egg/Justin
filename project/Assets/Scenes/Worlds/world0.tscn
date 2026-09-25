@@ -1456,6 +1456,9 @@ Pause Menu again, then go into the
 Main Menu, and press any World
 Level. This should fix it."
 
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1858917552]
+color = Color(0.8602326, 0.9265614, 0.8532224, 1)
+
 [connection signal="pressed" from="Pause Menu/Pause/PausePanel/VBoxContainer/Resume" to="Pause Menu/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause Menu/Pause/PausePanel/VBoxContainer/Menu" to="Pause Menu/Pause" method="_on_menu_pressed"]
 [connection signal="pressed" from="Pause Menu/Pause/PausePanel/VBoxContainer/Exit" to="Pause Menu/Pause" method="_on_exit_pressed"]

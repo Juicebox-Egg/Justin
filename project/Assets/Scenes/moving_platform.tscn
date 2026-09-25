@@ -13,13 +13,12 @@ point_count = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxhtq"]
 size = Vector2(40, 8)
 
-[node name="MovingPlatform" type="Path2D" unique_id=1496652410 node_paths=PackedStringArray("path_follow_2D")]
+[node name="MovingPlatform" type="Path2D" unique_id=1496652410]
 curve = SubResource("Curve2D_s1svh")
 script = ExtResource("1_nxhtq")
 looping = true
-ease = 2
+easing = 2
 transition = 4
-path_follow_2D = NodePath("PathFollow2D")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=147667185]
 rotates = false
